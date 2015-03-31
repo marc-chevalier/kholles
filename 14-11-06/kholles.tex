@@ -1,0 +1,120 @@
+\input{../macros.tex}
+
+\title{Exercices de khôlle}
+\author{Marc \textsc{Chevalier}}
+\date{6 novembre 2014}
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\section{Séries de fonction}
+
+\subsection{Théorème de \textsc{Bernstein} et théorème de \textsc{Weierstrass}}
+
+\begin{enumerate}
+    \item Soit $f$ une application continue sur $[0,1]$ à valeurs dans $\RR$. Pour $n\in\NN^*$, on définie de $n^\text{ème}$ polynôme de \textsc{Bernstein} associé à $f$ par
+    \[
+        B_n(f) = \sum\limits_{k=0}^n \binom{n}{k} f\left(\frac{k}{n}\right) X^k (x-X)^{n-k}
+    \]
+    \begin{enumerate}
+        \item Calculer $B_n(f)$ quand $f$ est la fonction $x\mapsto 1$, quand $f$ est la fonction $x\mapsto x$ et quand $f$ est la fonction $x\mapsto x(x-1)$.
+        \item Déduire que 
+            \[
+                \sum\limits_{k=0}^n\binom{n}{k}(k-nX)^2X^k(1-X)^{n-k} = nX(1-X)
+            \]
+    \end{enumerate}
+    \item En séparant les entiers $k$ tels que $\left\lvert x- \frac{k}{n} \right\rvert > \alpha$ et les entiers tels que $\left\lvert x- \frac{k}{n} \right\rvert \leqslant \alpha$ (pour un $\alpha$ bien choisi), montrer que la suite des polynômes de $(B_n(f))_{n\in\NN^*}$ converge uniformément vers $[0,1]$.
+    
+    \item Montrer le théorème de \textsc{Weierstrass} : soit $f$ une application continue sur $[a,b]$ à valeurs dans $\RR$. Montrer que $f$ est limite uniforme sur $[a,b]$ d'une suite de polynômes.
+\end{enumerate}
+
+\subsection{Équivalent}
+
+Pour $x\in ]-1,1[$, on pose
+\[
+    f(x) = \sum\limits_{n=1}^{+\infty} x^{n^2}
+\]
+Trouver un équivalent simple de $f$ en 1.
+
+\subsection{Premières études de convergence uniforme}
+
+Étudier la convergence simple et la convergence uniforme des suites de fonctions $(f_n)$ suivantes :
+\begin{enumerate}
+    \item $f_n(x)=\sum\limits_{k=0}^{n-1}x^k$ sur $]-1,1[$, puis sur $[-a,a]$ avec $0\leqslant a<1$.
+    \item $f_n(x)=nx^n\ln(x)$, $f_n(0)=0$, sur $[0,1]$.
+    \item $f_n(x)=e^{-nx}\sin(2nx)$ sur $\RR^+$ puis sur $[a,+\infty[$, avec $a>0$.
+\end{enumerate}
+
+\subsection{Suite récurrente}
+
+On définit une suite de fonctions $f_n:[0,1]\to\RR$ par $f_0=0$ et, pour tout $n\in\NN$ et tout $x\in I=[0,1]$
+\[
+    f_{n+1}(x)=f_n(x)+\frac{1}{2}\left(x-(f_n(x))^2\right)
+\]
+\begin{enumerate}
+    \item Montrer que la suite $(f_n)$ converge simplement sur $I$ vers la 
+fonction $x\mapsto \sqrt{x}$. 
+    \item Démontrer que, pour tout entier $n\geq 1$,
+\[
+    0\leqslant \sqrt{x}-f_{n+1}(x)=\sqrt{x}\left(1-\sqrt{x}\right)^n
+\]
+    \item En déduire que la convergence est uniforme sur $I$.
+\end{enumerate}
+
+\subsection{Non-dérivabilité à droite d'une fonction limite}
+
+On considère la série de fonctions $\sum\limits_{n\geq 1}\frac{e^{-nt}}{1+n^2}$ et on note $f$ sa somme.
+\begin{enumerate}
+    \item Quel est le domaine de définition de $f$?
+    \item Montrer que $f$ est continue sur $\mathbb R^+$ et de classe $C^\infty$ sur $]0,+\infty[$.
+    \item On fixe $A>0$.
+        \begin{enumerate}
+            \item Justifier l'existence d'un entier $N\geq 1$ tel que 
+                \[
+                    \sum_{n=1}^N \frac{n}{1+n^2}\geqslant A
+                \]
+            \item En déduire qu'il existe $\delta>0$ tel que, pour tout $h\in]0,\delta[$, 
+                \[
+                    \sum_{n=1}^N \frac{e^{-nh}-1}{h(1+n^2)}\leqslant -A+1
+                \]
+            \item Démontrer que $f$ n'est pas dérivable en 0, mais que sa courbe représentative admet une tangente verticale au point d'abscisse 0.
+        \end{enumerate}
+    \item Déterminer la limite de $f$ en $+\infty$. 
+\end{enumerate}
+
+\subsection{Zêta alternée}
+
+
+On considère la fonction $\mu(x)=\sum\limits_{n\geqslant 1}\frac{(-1)^{n+1}}{n^x}.$
+\begin{enumerate}
+    \item Quel est le domaine de définition de $\mu$?
+    \item Montrer que $\mu$ est de classe $\C^\infty$ sur son domaine de définition.
+    \item Démontrer que $\mu$ admet une limite en $+\infty$ et la calculer.
+    \item On souhaite démontrer que $\mu$ admet une limite en 0.
+        \begin{enumerate}
+            \item Démontrer que, pour tout $x>0$, on a 
+                \[
+                    -1+2\mu(x)=\sum_{n\geqslant 1}(-1)^{n+1}\left(\frac{1}{n^x}-\frac{1}{(n+1)^x}\right)
+                \]
+            \item En déduire que pour tout $x>0$, on a
+                \[
+                    0\leqslant -1+2\mu(x)\leqslant 1-\frac{1}{2^x}
+                \]
+            \item Conclure.
+        \end{enumerate}
+\end{enumerate}
+
+\subsection{Non-dérivabilité à droite d'une fonction limite}
+
+Soit la série de fonctions $\sum\limits_{n\geqslant 2}f_n$, avec $f_n(x)=\frac{xe^{-nx}}{\ln n}$. On note $S$ sa somme.
+\begin{enumerate}
+    \item Étudier la convergence simple, normale, uniforme de cette série sur $[0,+\infty[$.
+    \item Montrer que $S$ est de classe $\C^1$ sur $]0,+\infty[$.
+    \item Montrer que $S$ n'est pas dérivable à droite en 0.
+    \item Montrer que, pour tout $k$, $S(x)=\petitO{x^{-k}}$ en $+\infty$.
+\end{enumerate}
+
+
+\end{document}

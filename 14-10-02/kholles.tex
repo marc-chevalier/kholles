@@ -1,0 +1,97 @@
+\input{../macros.tex}
+
+\title{Exercices de kholle}
+\author{Marc \textsc{Chevalier}}
+\date{2 octobre 2014}
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\section{Espaces normés}
+
+\subsection{Un peu de norme sur les matrices}
+Soit $n\in\NN$.
+
+Pour $A=\left(a_{i,j}\right)_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}}\in\M_n(\CC)$, on pose $\Vert A \Vert = \sup\limits_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}} \vert a_{i,j}\vert$.
+
+\begin{enumerate}
+    \item Prouver que $\Vert\quad\Vert$ est une norme sur $\M_n(\CC)$.
+
+    \item Démontrer que $\forall (A,B)\in \left(M_n(\CC)\right)^2, \Vert AB \Vert \leqslant n \Vert A\Vert\,\Vert B \Vert$.
+
+    \item Montrer que $\forall A\in\M_n(\CC), \forall n\in\NN, p\geqslant 1 \Rightarrow \Vert A^p\Vert \leqslant n^{p-1} \Vert A \Vert^p$.
+
+    \item Démontrer que, pour toute matrice $A\in\M_n(\CC)$, la série $\sum\frac{A^p}{p!}$ est absolument convergente. 
+
+Est elle convergente ?
+\end{enumerate}
+ 
+\subsection{Norme de fonction \texorpdfstring{$(\Delta)$}{Delta}}
+
+Soit $E=\C([0,1],\RR)$. Pour $(f,g)\in E^2$, on pose $N_g(f)=\Vert gf\Vert_\infty$.
+
+\begin{enumerate}
+    \item Donner une condition nécessaire et suffisante sur $g$ pour que $N_g$ soit une norme.
+    
+    \item Donner une condition nécessaire et suffisante sur $g$ pour que $N_g$ soit équivalente à la norme infinie.
+\end{enumerate}
+
+\subsection{Fermeture des sous-espace d'un evn de dimension finie \texorpdfstring{$(\Delta)$}{Delta}}
+Soit $E$ un espace vectoriel normé de dimension finie. Montrer que tout sous-espace vectoriel de $E$ est fermé.
+
+\subsection{L'intégrale jamais nulle}
+Soit $n\geqslant 1$ et $E_n$ l'ensemble des polynômes unitaires de $\RR[X]$ unitaires de degré $n$. Montrer que $\inf\limits_{P\in E_n} \int_0^1 \vert P(t) \vert dt > 0$.
+
+\section{Connexité par arcs}
+
+\subsection{Échauffement}
+
+Selon la valeur de $d$, discuter de la connexité par arc de :
+\begin{itemize}
+    \item $\RR^d \setminus \QQ^d$
+    \item $(\RR\setminus\QQ)^d$
+    \item $\RR^d \setminus (\RR\setminus\QQ)^d$
+\end{itemize}
+
+\subsection{Connexe, mais pas par arcs}
+
+Soit 
+$$
+    \begin{aligned}
+        f:]0,1]&\ra \RR\\
+        x&\mapsto \sin \left(\frac{1}{x}\right)
+    \end{aligned}
+$$
+et $\Gamma = \lbrace (x,y) \in \RR^*\times\RR \vert f(x)=y \rbrace$.
+
+\bigskip
+
+$\overline{\Gamma}$ est-il connexe par arc ?
+
+\section{Topologie}
+
+\subsection{Convexité de l'adhérence et de l'intérieur d'un convexe}
+Soit $C$ une partie convexe d'un espace vectoriel normé. Démontrer que $\overline{C}$ est convexe, puis que $\overset{\circ}{C}$ est convexe.
+
+\subsection{Adhérence des sous-espaces vectoriels}
+Soit $E$ un espace vectoriel normé, et $V$ un sous-espace vectoriel de $E$.
+\begin{enumerate}
+    \item Montrer que  $\overline{V}$ est un sous-espace vectoriel de $E$.
+    \item Montrer que si $\overset{\circ}{V}\neq \emptyset$, alors $V=E$.
+\end{enumerate}
+
+\section{Application linéaire continue}
+
+\subsection{Régularité de la dérivation \texorpdfstring{$(\Delta)$}{Delta}}
+Soit $E=\C^\infty([0,1],\RR)$. On considère l'opérateur de dérivation 
+\[
+    \begin{aligned}
+        D: E &\ra E\\
+        f&\mapsto f'
+    \end{aligned}
+\]
+Montrer que, quelle que soit la norme $N$ dont on munit $E$, $D$ n'est jamais une application linéaire continue de $(E,N)$ dans $(E,N)$.
+
+\end{document}

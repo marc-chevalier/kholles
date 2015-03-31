@@ -1,0 +1,127 @@
+\input{../macros.tex}
+
+\title{Exercices de khôlle}
+\author{Marc \textsc{Chevalier}}
+\date{16 octobre 2014}
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\section{Séries}
+
+\subsection{DL de la série harmonique}
+
+Prouver :
+
+\[
+    \sum_{k=1}^n \frac{1}{k}= \ln(n)+\gamma+\frac{1}{2n}-\frac{1}{12n^2}+\frac{1}{120n^4}-\frac{1}{252n^6}+\frac{1}{240n^8}-\frac{1}{132n^{10}}+\grandO{\frac1{n^{12}}}
+\]
+
+\subsection{Théorème de \textsc{Riemann}}
+
+Soit $(u_n)_{n\in\NN}$ une suite à valeurs réelles dont la série associée est semi-convergente, c'est-à-dire que et soit
+$\alpha\in\RR\cup\{-\infty,+\infty\}$.
+
+Alors il existe une permutation $\sigma$ de $\NN$ telle que
+$$\sum_{k=0}^nu_{\sigma(k)}\underset{n\to\infty}{\longrightarrow}\alpha.$$
+
+\subsection{Arnaud \textsc{Triay}}
+
+$u_n$ CV $\to$ 0 décroissante, montrer que $\sum u_n$ et $\sum n(u_n - u_{n+1})$ sont de même nature et égales en cas de convergence.
+
+\subsection{Arnaud \textsc{Triay}, le retour}
+
+$a, b > 0, u_0 > 0$
+$u_{n+1} = \frac{n+a}{n+b}u_n$
+\begin{enumerate}
+    \item Montrer que $\exists \alpha > 0, u_n \sim \frac{\alpha}{n(b-a)}$.
+    \item Trouver une condition nécessaire et suffisante pour que $\sum u_n$ CV.
+\end{enumerate}
+
+
+\subsection{Inégalité de \textsc{Carleman}}
+
+Soit $(a_n)$ une suite à termes positifs tels que $\sum_na_n$ CV.
+
+\begin{enumerate}
+    \item Prouver que la série de terme général $\frac{\sum_{i=1}^n ia_i}{n(n+1)}$ CV et est de même somme que la série de terme général $a_n$.
+    \item Montrer l'inégalité $\frac{1}{(n!)^{\frac{1}{n}}} \leqslant \frac{e}{n+1}$
+    \item En conclure que $$\sum_{n=1}^{+\infty}\left(\prod_{i=1}^n a_i\right)^\frac{1}{n} \leqslant e \sum_{n=1}^{+\infty} a_n$$
+\end{enumerate}
+
+\subsection{Somme de logarithmes}
+
+Par comparaison à une intégrale, donner un équivalent de $u_n = \sum_{k=1}^n\ln^2(k)$. La série de terme général $\frac{1}{u_n}$ est-elle convergente ?
+
+\subsection{Somme et développement asymptotique de la série des inverses des carrés}
+
+Le but de l'exercice est de calculer $\sum_{n\geqslant 1}\frac{1}{n^2}$ et de donner un développement asymptotique de la somme partielle $\sum_{k=1}^n\frac{1}{i^2}$.
+
+\begin{enumerate}
+    \item   \begin{enumerate}
+                \item Soit $\alpha >1$ et $k\geqslant 2$.  Démontrer que
+                \[
+                    \int_k^{k+1}\frac{\dd t}{t^\alpha} \leqslant \frac{1}{k^\alpha} \leqslant \int_{k-1}^k \frac{\dd t}{t^\alpha}
+                \]
+                \item En déduire que 
+                \[
+                    \sum_{k\geqslant n} \frac{1}{k^\alpha} \underset{+\infty}{\sim} \frac{1}{(\alpha -1)n^{\alpha-1}}
+                \]
+            \end{enumerate}
+    \item Soit $f$ une fonction de classe $\C^1$ sur $[0,\pi]$. Démontrer que
+    \[
+        \int_0^\pi f(t)\sin\left(\frac{(2n+1)t}{2}\right)\dd t \to 0
+    \]
+    \item On pose $A_n(t) = \frac{1}{2}+\sum_{k=1}^n \cos(kt)$. Vérifier que, pour tout $t\in]0,\pi]$, on a
+    \[
+        A_n(t)=\frac{\sin \left( \frac{(2n+1)t}{2}\right)}{2\sin\left(\frac{t}{2}\right)}
+    \]
+    \item Déterminer deux réels $a$ et $b$ tels que, pour tout $n \geqslant 1$
+    \[
+        \int_0^\pi (at^2+bt)\cos(nt)\dd t=\frac{1}{n^2}
+    \]
+    
+    Vérifier alors que 
+    \[
+        \int_0^\pi (at^2+bt)A_n(t) \dd t = S_n-\frac{\pi^2}{6}
+    \]
+    \item Déduire des questions précédentes que $S_n \to \frac{\pi^2}{6}$
+    \item Déduire des questions précédentes que 
+    \[
+        S_n=\frac{\pi^2}{6}-\frac{1}{n}+\petitO{\frac{1}{n}}
+    \]
+\end{enumerate}
+
+\subsection{Agathe \textsc{Herrou}}
+
+Nature et somme
+
+\[
+    \sum_{n=0}^{\infty} \left(\frac{1}{4n+1} - \frac{2}{4n+2} + \frac{1}{4n+3} + \frac{1}{4n+4}\right)
+\]
+
+\subsection{Série harmonique alternée}
+
+Convergence et somme de 
+\[
+    \sum\limits_{n=0}^\infty \frac{(-1)^n}{n}
+\]
+
+\subsection{Formule de \textsc{Stirling}}
+
+Convergence de 
+\[
+    \sum\frac{3^n(n!)^2}{(2n)!}
+\]
+
+\subsection{Convergence du carré de la moyenne}
+
+Soient $(u_n)_{n\geqslant 1}$ une suite réelle. Pour $n \geqslant 1$, on pose $v_n = \frac{u_1 + \cdots + u_n}{n}$. Montrer que si la série de terme général $(u_n)^2$ converge alors la série de terme général $(v_n)^2$ converge et que 
+\[
+    \sum\limits_{n=1}^{+\infty} (v_n)^2 \leqslant 4 \sum_{n=1}^{+\infty} (u_n)^2
+\]
+
+
+\end{document}

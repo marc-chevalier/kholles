@@ -1,0 +1,240 @@
+\input{../macros.tex}
+
+\title{Exercices de khôlle \--- Correction}
+\author{Marc \textsc{Chevalier}}
+\date{16 octobre 2014}
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\section{Séries}
+
+\subsection{DL de la série harmonique}
+
+On peut citer la célèbre formule d'Euler en première approche
+
+\[
+    \sum_{n=1}^N\frac{1}{n}=\ln N+\gamma+\petitO{1}
+\]
+
+Ce qui suit explique comment obtenir le résultat (et généraliser l'étude à d'autres séries).
+
+On se replace dans les hypothèses du théorème de comparaison série intégrale ci-dessus, mais on prend le taureau par les cornes en étudiant la différence
+
+\[
+    \Delta_n = u_n- \int_n^{n+1} f(t) \dd t
+\]
+
+Celle-ci vérifie donc l'encadrement
+
+\[
+    0\leqslant \Delta_n \leqslant u_n-u_{n+1}
+\]
+
+Ce qui montre que la série de terme général $\Delta_n$ est à termes positifs et majorée par une série à termes télescopiques, convergente. Donc la série de terme général $\Delta_n$ converge. On peut donc écrire
+
+\[
+    \begin{aligned}
+        \sum_{n=0}^N u_n&=\int_0^{N+1} f(t)\dd t+\sum_{n=0}^N \Delta_n\\
+        &=\int_0^{N+1} f(t) \dd t+\Delta + \petitO{1}
+    \end{aligned}
+\]
+    
+On s'est contenté de dire que la série de terme général $\Delta n$ convergeait. Pour aller plus loin, et estimer sa vitesse de convergence, on peut appliquer à cette même série la méthode de comparaison série intégrale : il nous faut d'abord un équivalent pour $\Delta n$
+
+\[
+    \begin{aligned}
+        \Delta_n &= \frac{1}{n}-\ln (n+1)+\ln n\\
+        &= \frac{1}{n}-\ln \left(1+\frac{1}{n}\right)\\
+        &\sim \frac{1}{2n^2}
+    \end{aligned}
+\]
+
+On compare alors le reste de la série de terme général $\Delta n$ avec l'intégrale de la fonction $t \mapsto \frac1{2t^2}$ qui est encore continue positive décroissante
+
+\[
+    \int_{N+1}^{+\infty} \frac{\dd t}{2t^2} \leqslant \sum_{n=N+1}^{+\infty} \Delta_n = \Delta-\sum_{n=0}^{N} \Delta _n \leqslant \int_{N}^{+\infty} \frac{\dd t}{2t^2}
+\]
+
+Ce qui donne un développement de $\sum\limits_{n=0}^{N} \Delta _n$ qu'on peut reporter dans la formule d'Euler. On peut recommencer ensuite l'opération effectuée, en soustrayant de nouveau l'intégrale avec laquelle on vient de faire la comparaison. La méthode se poursuit jusqu'à obtenir un développement à l'ordre désiré. Par exemple pour l'ordre suivant, on a : $\sum\limits_{k=1}^n \frac{1}{k} = \ln(n)+\gamma+\frac{1}{2n}+\petitO{\frac1{n}}$
+
+On pose alors $u_n=\sum\limits_{k=1}^n \frac{1}{k}- \ln(n)-\gamma-\frac{1}{2n}=\petitO{\frac{1}{n}}$
+
+Puis on trouve un équivalent $v_n$ de $u_{n-1}-u_n$ qu'on somme avec le théorème de sommation des équivalents, puis on trouve un équivalent de $\sum\limits_{k=n+1}^{+\infty} v_n$ en comparant le terme général avec une intégrale.
+
+On itère ce procédé. Quand vous arrivez au rang 10, vous avez compris comment ça marche.
+
+\subsection{Théorème de \textsc{Riemann}}
+
+On suppose ici que $\alpha$ appartient à $\RR$.
+Remarque préliminaire
+
+Posons
+\[
+    \forall n \in \NN,\ a_n=\max(u_n,0)=\frac{u_n+|u_n|}2\quad \text{et} \quad b_n=\min(u_n,0)=\frac{u_n-|u_n|}2
+\]
+
+On a alors, d'après la SCV.
+\[
+    \sum_{k=0}^na_k\underset{n\to\infty}{\longrightarrow}+\infty\quad\text{et}\quad\sum_{k=0}^nb_k\underset{n\to\infty}{\longrightarrow}-\infty
+\]
+
+Construction de la permutation
+
+On construit une permutation $\sigma$ de $\NN$ de la façon suivante. On commence à sommer les termes positifs ou nuls (sans en omettre) jusqu'à dépasser $\alpha$ (possible d'après (3)). Puis on somme tous les termes strictement négatifs jusqu'à ce que la somme partielle soit strictement inférieure à $\alpha$ (possible d'après (3)). Puis on itère le procédé, en sommant les termes positifs à partir de là où on s'était arrêté, puis les termes négatifs, etc. On a bien construit une permutation.
+Convergence
+
+Notons $(x_n)_n\in \NN$ la suite des sommes partielles obtenues à chaque fin de sommation de termes positifs, et $(y_n)_n\in \NN$ celle des sommes partielles à chaque fin de sommation de termes négatifs. La suite complète des sommes partielles croît jusqu'à $x_0$, puis décroît jusqu'à $y_0$, puis croît jusqu'à $x_1$, etc. Pour montrer qu'elle converge vers $\alpha$, il suffit donc de montrer que les deux sous-suites $(x_n)$ et $(y_n)$ convergent vers $\alpha$.
+
+Or si $u_{k_n}$ désigne le dernier terme de la somme partielle $x_n$, on a par construction :
+\[
+    x_n-u_{k_n}\leqslant\alpha<x_n\quad\text{donc}\quad0<x_n-\alpha\leqslant u_{k_n}
+\]
+
+Comme la suite des indices $k_n$ est strictement croissante, elle tend vers l'infini donc, d'après (1),
+$$\lim_{n\to\infty}u_{k_n}=\lim_{k\to\infty}u_k=0$$
+
+Ceci prouve que la suite $(x_n)$ converge vers $\alpha$. On procède de même pour $(y_n)$, ce qui achève la preuve.
+
+\subsection{Arnaud \textsc{Triay}}
+
+\paragraph{Indication}
+
+\[
+    \sum_{k=n}^{\infty} u_k - u_{k+1}
+\]
+
+\subsection{Arnaud \textsc{Triay}, le retour}
+
+$a, b > 0, u_0 > 0$
+$u_{n+1} = \frac{n+a}{n+b}u_n$
+\begin{enumerate}
+    \item Mq $\exists \alpha > 0, u_n \sim \frac{\alpha}{n(b-a)}$
+    \item CNS pour que $\sum u_n$ CV
+\end{enumerate}
+
+
+\subsection{Inégalité de \textsc{Carleman}}
+
+\paragraph{Correction : } \texttt{serietheoriquecor.pdf} exo 12
+
+\subsection{Somme de logarithmes}
+
+
+\paragraph{Correction : } \texttt{seriecor.pdf} exo 35
+
+
+\subsection{Somme et développement asymptotique de la série des inverses des carrés}
+
+\paragraph{Correction : } \texttt{seriecor.pdf} exo 34
+
+\subsection{Agathe \textsc{Herrou}}
+
+Nature et somme
+
+$$
+    \sum_{n=0}^{\infty} \left(\frac{1}{4n+1} - \frac{2}{4n+2} + \frac{1}{4n+3} + \frac{1}{4n+4}\right)
+$$
+
+\subsection{Série harmonique alternée}
+
+Le terme général $(u_n)$ de la série harmonique alternée est définie par
+
+\[
+    \forall n \in \NN^*,\ u_n=\frac{(-1)^n}{n}
+\]
+
+C'est donc une variante de la série harmonique. L'alternance des signes change tout puisque cette série converge, par le critère de convergence des séries alternées. On peut se servir de l'étude effectuée avec la série harmonique pour déterminer la nature et la somme de la série harmonique alternée.
+
+En séparant termes pairs et impairs dans le calcul des sommes partielles, et en appliquant la formule d'Euler précédente, on prouve que la série harmonique alternée converge et a pour somme
+
+\[
+    \begin{aligned}
+        -\ln 2 &= \sum_{n=1}^{+\infty} \frac{(-1)^n}{n}\\
+        &=-1+\frac{1}{2}-\frac{1}{3}+\frac{1}{4}+\cdots+\frac{(-1)^n}{n}+\cdots 
+    \end{aligned}
+\]
+
+Démonstration détaillée : on décompose les sommes partielles d'ordre pair
+
+\[
+    \sum_{n=1}^{2N} \frac1{n}=\sum_{p=1}^{N} \frac{1}{2p}+\sum_{p=0}^{N-1} \frac{1}{2p+1}
+\]
+
+\[
+    \begin{aligned}
+        \sum_{n=1}^{2N} \frac{(-1)^n}{n}&=\sum_{p=1}^{N} \frac{1}{2p}-\sum_{p=0}^{N-1} \frac{1}{2p+1}\\
+        &=2\sum_{p=1}^{N} \frac{1}{2p}-\sum_{n=1}^{2N} \frac1{n}\\
+        &=H_N-H_{2N}
+    \end{aligned}
+\]
+
+Une formule d'\textsc{Euler} pour chaque terme
+
+\[
+    \begin{aligned}
+        \sum_{n=1}^{2N} \frac{(-1)^n}{n}&=\ln N+\gamma+o(1)-(\ln(2N)+\gamma+\petitO{1})\\
+        &=-\ln 2+\petitO{1}
+    \end{aligned}
+\]
+
+Pour conclure il faut encore signaler que si on prend une somme partielle d'ordre impair, elle a aussi pour limite $-\ln 2$ (on ajoute en effet à la somme d'ordre pair précédente un terme qui tend vers 0).
+
+
+\subsubsection{Variante}
+$a_n = \frac{1}{n+1}$ et $b_n = (-1)^n$
+$|b_n| \leqslant 1$ et $|a_{n+1}-a_n| = \frac{1}{(n+1)(n+2)} \leqslant \frac{1}{n^2}$
+On sait que la série $\sum_{n=1}^{+\infty} \frac{1}{n^2}$ converge (voir fonction $\zeta$ de \textsc{Riemann}), donc les conditions exposées ci-dessus sont toutes réunies.
+\[
+    S = 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots
+\]
+ converge.
+
+\subsection{Formule de \textsc{Stirling}}
+
+Bourriner du \textsc{Stirling}.
+
+\subsection{Convergence du carré de la moyenne}
+
+Pour tout entier $n\geqslant 2$, on a $nv_n - (n-1) v_{n-1} = u_n$, ce qui reste vrai pour $n=1$ si on pose $v_0=0$.
+
+Par suite, pour $n\in\NN^*$.
+\[
+    \begin{aligned}
+        v^2_n -2u_nv_n &= v_n^2 - 2(nv_n -(n-1)v_{-1})v_n\\
+        &= -(2n-1)v_n^2 +2(n-1) v_{n-1}v_n\\
+        &\leqslant -(2n-1)v_n^2 +(n-1)(v_{n-1}^2+v_n^2)\\
+        &= (n-1) v_{n-1}^2 - nv_n^2
+    \end{aligned}
+\]
+
+Mais alors, pour $n\in\NN^*$
+
+\[
+    \sum\limits_{n=1}^N (v_n^2 - u_nv_n) \leqslant \sum\limits_{n=1}^N ((n-1)v_{n-1}^2 - nv_n^2) = -nv_n \leqslant 0
+\]
+
+Par suite
+\[
+    \sum\limits_{n=1}^N v_n^2 \leqslant \sum\limits_{n=1}^N 2u_nv_n \leqslant 2\sqrt{ \sum\limits_{n=1}^N u_n^2 }\sqrt{\sum\limits_{n=1}^N v_n^2  } \text{ \qquad (inégalité de \textsc{Cauchy-Schwarz})} 
+\]
+
+Si $\sqrt{\sum\limits_{n=1}^N v_n^2  } > 0$, on obtient après simplification par $\sqrt{\sum\limits_{n=1}^N v_n^2 }$ puis élévation au carré
+\[
+    \sum\limits_{n=1}^N v_n^2  \leqslant 4 \sum\limits_{n=1}^N u_n^2 
+\]
+
+cette inégalité restant claire si $\sqrt{\sum\limits_{n=1}^N v_n^2} = 0$. Finalement
+\[
+    \sum\limits_{n=1}^N v_n^2  \leqslant 4 \sum\limits_{n=1}^N u_n^2 \leqslant 4 \sum\limits_{n=1}^{+\infty} u_n^2 
+\]
+
+La suite des sommes partielles de la série de terme général $v_n^2 (\geqslant 0)$ est majorée. Donc la série de terme général $v_n^2$ converge et de plus, quand $N$ tend vers l'infini, on obtient
+\[
+    \sum\limits_{n=1}^{+\infty} v_n^2  \leqslant 4 \sum\limits_{n=1}^{+\infty} u_n^2 
+\]
+
+
+\end{document}

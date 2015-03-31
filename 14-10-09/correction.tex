@@ -1,0 +1,321 @@
+\input{../macros.tex}
+
+\title{Exercices de khôlle \--- Correction}
+\author{Marc \textsc{Chevalier}}
+\date{9 octobre 2014}
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\section{Compacité}
+
+\subsection{Suite convergente}
+
+Soit $(y_n)$ une suite de $A$. Si elle prend un nombre infini de fois la valeur $x$, alors elle possède une suite extraite constante égale à $x$, donc convergente dans $A$. Sinon, $y_n$ prend une infinité de fois une valeur différente de $x$. Quitte à considérer une suite extraite, on peut supposer que, pour chaque $n$, $y_n$ est un terme de la suite de départ, d'où $y_n=x_{\varphi(n)}$. On traite deux cas séparément :
+\begin{enumerate}
+    \item La suite d'entiers $(\varphi(n))$ est bornée : autrement dit, $(y_n)$ ne prend qu'un nombre fini de valeurs différentes. Clairement, une telle suite admet une sous-suite convergente (il suffit de prendre une valeur qui est prise une infinité de fois).
+    \item La suite d'entiers $(\varphi(n))$ n'est pas bornée : on peut alors extraire de $(y_n)$ une sous-suite $\left(y_{\psi(n)}\right)$ telle que $\varphi\circ\psi(n)$ soit strictement croissante. Mais alors, $y_{\psi(n)}=x_{\varphi\circ\psi(n)}$ converge vers $x$ puisque c'est une suite extraite de $(x_n)$. 
+\end{enumerate} 
+
+Dans tous les cas, on a prouvé que $(y_n)$ admettait une suite extraite convergente : l'ensemble $A$ est compact.
+
+\bigskip
+
+On peut aussi donner une preuve en utilisant la propriété de \textsc{Borel-Lebesgue}, si on connait cette caractérisation des parties compactes des espaces vectoriels normés. Pour cela, on considère un recouvrement de $A$ par une famille d'ouverts $(U_i)_{i\in I}$, et on doit prouver qu'on peut en extraire un sous-recouvrement fini. Soit $i_0$ tel que $x\in U_{i_0}$. Alors, puisque la suite converge vers $x$, il existe un entier $N$ tel que 
+pour tout $n>N$, on a $x_n\in U_{i_0}$. Soient ensuite $i_1,\dots,i_N$ tels que, pour $j\leq N$, $x_j\in U_{i_j}$. Alors, il est clair que 
+$U_{i_0}\cup\dots\cup U_{i_N}$ est un recouvrement ouvert de $A$, prouvant que $A$ est compact.
+
+\bigskip
+
+Sur cet exemple, la preuve utilisant la propriété de \textsc{Borel-Lebesgue} est sans doute plus facile.
+
+\subsection{Du local au global}
+
+Une des difficultés de ce type d'exercices est de savoir quelle caractérisation des ensembles compacts choisir :
+\textsc{Borel-Lebesgue} ou \textsc{Bolzano-Weierstass} ? Ici, la seconde est plus appropriée. On raisonne par l'absurde et on suppose que $f$ n'est pas lipschitzienne sur $K$. Pour chaque entier $n$, on peut donc trouver
+deux éléments $y_n$ et $z_n$ de $K$ tels que 
+\[
+    \norme{f(y_n)-f(z_n)}{} >n \norme{y_n-z_n}{}
+\]
+Remarquons que, puisque $f$ est bornée (elle est continue sur le compact $K$), disons par $M$,
+on a 
+\begin{equation}\label{EQYNZN}
+    \norme{y_n-z_n}{} \leqslant \frac{2M}{n}
+\end{equation}
+et donc $\|y_n-z_n\|\to 0$.
+
+D'autre part, puisqu'elle vit dans le compact $K$, la suite $(y_n)$ admet une sous-suite $\left(y_{\phi(n)}\right)$ qui converge vers $x\in K$. D'après l'inégalité (\ref{EQYNZN}), il en est de même pour $(z_{\phi(n)})$. Mais on sait que $f$ est localement lipschitzienne en $x$ et donc il existe $C>0$ et un voisinage $V_x$ de $x$ tels que
+\[
+    \forall (y,z)\in \left(K \cap V_x\right)^2, \norme{f(y)-f(z)}{} \geqslant C\norme{y-z}{}
+\]
+Pour $n$ assez grands, $y_\phi(n)$ et $z_{\phi(n)}$ sont éléments de $K\cap V_x$. On en déduit
+\[
+    n\norme{y_{\phi(n)}-z_{\phi(n)}}{}<\norme{f(y_{\phi(n)})-f(z_{\phi(n)})}{} \leqslant C \norme{y_{\phi(n)}-z_{\phi(n)}}{}
+\]
+Faisant tendre $n$ vers $+\infty$, c'est manifestement une contradiction !
+
+\subsection{Intersection de compacts}
+
+Soit $X$ un espace métrique.
+\begin{enumerate}
+
+    \item Soit $(F_n)_n$ une suite décroissante de fermés de $X$ et soit $(x_n)_n$ une suite convergente telle que $x_n\in F_n $ pour tout $n \geqslant 0$. Montrer que
+
+\[
+    \lim_{n\to \infty} x_n \in \bigcap_{n\geqslant 0} F_n
+\]
+
+Donner un exemple pour lequel $\bigcap_{n\geqslant 0} F_n = \emptyset$. 
+    
+    \item Soit maintenant $(K_n)_{n\in\NN}$ une suite décroissante de compacts non vides de $X$. Vérifier que $K = \bigcap\limits_{n\geqslant 0} K_n$ est non vide et que tout ouvert qui contient $K$ contient tous les $K_n$ à partir d'un certain rang.
+\end{enumerate}
+
+\begin{enumerate}
+    \item Soit $x = \lim x_n$. Soit $N \in \NN$, montrons que $x$ est dans $F_N$. On a $x_N \in F_N$,
+$x_{N+1} \in F_{N+1} \subseteq F_N$, $x_{N+2} \in F_{N+2} \subseteq F_{N+1} \subseteq FN$, etc.. Donc pour tout $n > N$ alors $x_n \in F_N$. Comme $F_N$ est fermé, alors la limite $x$ est aussi dans $F_N$. Ceci étant vrai quelque soit $N$, alors $x \in \bigcap\limits_n F_n$. Pour construire un exemple comme demandé il est nécessaire que de toute suite on ne puisse pas extraire de sous-suite convergente. Prenons par exemple dans $\RR$, $F_n = [n,+1[$,
+alors $\bigcap\limits_n F_n = \emptyset$.
+    \item 
+        \begin{enumerate}
+            \item Pour chaque $n$ on prend $x_n \in K_n$, alors pour tout $n$, $x_n \in K_0$ qui est compact donc on peut extraire une sous-suite convergente. Si $x$ est la limite de cette sous-suite alors $x \in K$. Donc $K$ est non vide.
+            \item Par l'absurde supposons que c'est faux, alors
+                \[
+                    \forall N \in \NN, \exists n \geqslant N : \exists x_n \in K_n : x_n \not\in \Omega
+                \] 
+                De la suite $(x_n)$, on peut extraire une sous-suite $x_{\varphi(n)}$ qui converge vers $x \in K$. Or $x_n \in X \setminus \Omega$ qui est fermé donc $x \in X \setminus \Omega$. Comme $K\subseteq \Omega$, $x \not\in K$ ce qui est contradictoire.
+    \end{enumerate}     
+\end{enumerate}
+
+\section{Séries}
+
+\subsection{\textsc{Bertrand} généralisé}
+
+On a, pour $a\neq 0$.
+\[
+    \int \frac{1}{\ln(x)\cdots\ln^{(k)}(x)\left(\ln^{(k+1)}(x)\right)^{a}} \dd x = \frac{\left(\ln^{(k+1)}(x)\right)^{1-a}}{1-a}
+\]
+et
+\[
+    \int \frac{1}{\ln(x)\cdots\ln^{(k)}(x)} \dd x = \ln^{(k+1)}(x)
+\]
+
+Par récurrence et grâce à une comparaison série/intégrale, on obtient le résultat souhaité.
+
+\subsection{Terme général donné par un produit}
+
+On va commencer par étudier la suite $\ln(u_n)$. On a, en effectuant un développement limité.
+
+\[
+    \begin{aligned}
+        \ln(u_n)&=\sum_{q=2}^n\ln \left(1+\frac{(-1)^q}{\sqrt{q}}\right)\\
+        &=\sum_{q=2}^n\ln \left(\frac{(-1)^q}{\sqrt{q}}-\frac{1}{q} + \grandO{\frac{1}{q^{\frac{3}{2}}}}\right)
+    \end{aligned}
+\]
+
+Or, les séries $\sum\limits_{q=2}^n\frac{(-1)^q}{\sqrt{q}}$ et $\sum\limits_{q=2}^n  \grandO{\frac{1}{q^{\frac{3}{2}}}}$ convergent par, respectivement, le critère des séries alternées et par convergence absolue et comparaison à une série de Riemann. D'autre part, il est bien connu (par comparaison à une intégrale) que
+\[
+    \sum_{q=2}^n\frac{1}{q} = \ln n + \lambda + o(1)
+\]
+où $\lambda \in \RR$. On en déduit que 
+\[
+    \ln(u_n)=-\ln n + \alpha + o(1)
+\]
+soit en prenant l'exponentielle
+\[
+    u_n=\frac{\alpha}{n}\exp(o(1))
+\]
+
+On a donc $u_n \sim \frac{\alpha}{n}$, et la série de terme général $u_n$ est donc divergente.
+
+\subsection{Règle de \textsc{Raabe}-\textsc{Duhamel}}
+
+\begin{enumerate}
+    \item Supposons d'abord $a>1$, et prenons $b\in ]1,a[$. Posons aussi $v_n=\frac{1}{n^b}$. Alors on a 
+        \[
+            \begin{aligned}
+                \frac{v_{n+1}}{v_n}&=\frac {n^b}{(n+1)^b}\\
+                &=\left(1+\frac{1}{n}\right)^{-b}\\
+                &=1-\frac{b}{n}+\petitO{\frac{1}{n}}
+            \end{aligned}
+        \]
+        Ainsi, il existe un entier $n_0$ tel que, pour $n\geqslant n_0$, on a
+        \[
+            \frac{u_{n+1}}{u_n}\leqslant \frac{v_{n+1}}{v_n}
+        \]
+        Par récurrence, on montre aisément par récurrence sur $n$ que, pour $n\geqslant n_0$,
+        \[
+            u_n\leqslant C v_n
+        \]
+        avec $C=\frac{u_{n_0}}{v_{n_0}}$. Par comparaison (les séries sont à terme positif), la série de terme général
+$u_n$ converge puisque la série de terme général $v_n$ converge.
+
+    \item Dans le cas où $a<1$, on procède de même en choisissant cette fois $b\in]a,1[$. On trouve alors que, pour $n$
+assez grand,
+        \[
+            u_n\geqslant C v_n
+        \]
+        Puisque la série de terme général $v_n$ diverge (cette fois, $b<1$), la série de terme général $u_n$ diverge.
+    
+    \item Posons $u_n=\frac{1}{n(\ln n)^b}$ dont on rappelle qu'elle converge si et seulement si $b>1$.
+Alors, 
+        \[
+            \begin{aligned}
+                \frac{u_{n+1}}{u_n}&=\left(\frac{n}{n+1}\right)\left(\frac{\ln (n)}{\ln(n+1)}\right)^b\\
+                &=\left(1-\frac{1}{n}+\petitO{\frac{1}{n}}\right)\left(\frac{\ln (n)}{\ln(n)+\ln\left(1+\frac{1}{n}\right)}\right)^b
+            \end{aligned}
+        \]
+        Or, 
+        \[
+            \begin{aligned}
+                \frac{\ln n}{\ln n+\ln\left(1+\frac{1}{n}\right)}&=\frac{\ln n}{\ln n+\grandO{\frac{1}{n}}}\\
+                &=\frac{1}{1+\grandO{\frac{1}{n\ln n}}}\\
+                &=\grandO{\frac1{n\ln n}}
+            \end{aligned}
+        \]
+        Effectuant le produit des deux développements limités, on trouve qu'au premier ordre,
+        \[
+            \frac{u_{n+1}}{u_n}=1-\frac{1}{n}+\petitO{\frac{1}{n}}
+        \]
+        Ainsi, on trouve le même résultat, alors que la série de terme général $u_n$ est parfois convergente, parfois divergente. Le cas $a=1$ est bien un cas limite. 
+    \item
+        \begin{enumerate}
+            \item  On a 
+                \[
+                    \begin{aligned}
+                        w_n&=\ln\left(\frac{(n+1)u_{n+1}}{nu_n}\right)\\
+                        &=\ln\left(\left(1+\frac{1}{n}\right)\left(1-\frac{1}{n}+\grandO{\frac{1}{n^2}}\right)\right)\\
+                        &=\ln\left(1+\grandO{\frac{1}{n^2}}\right)\\
+                        &=\grandO{\frac{1}{n^2}}
+                    \end{aligned}
+                \]
+            \item La question précédente prouve que la série de terme général $w_n$ converge. Ainsi, il existe $C\in\RR$ tel que $\sum\limits_{k=1}^nw_k\to C$. Mais $\sum\limits_{k=1}^{n-1} w_k=\ln(nu_n)-\ln(u_1)$. On en déduit que la suite $(\ln(nu_n))$ converge vers un réel. Passant à l'exponentielle, on en déduit qu'il existe $\lambda>0$ tel que $nu_n\to\lambda$ c'est-à-dire $u_n\sim\frac\lambda n$. Ainsi, par comparaison, la série de terme général $u_n$ diverge.
+        \end{enumerate}
+\end{enumerate}
+
+\subsection{Même nature}
+
+Puisque les termes généraux des deux séries sont positifs, il suffit de démontrer que les sommes partielles d'une des séries sont majorées si et seulement si les sommes partielles de l'autre le sont Le point clé est l'encadrement suivant
+\[
+    \begin{aligned}
+        2^ku_{2^{k+1}}&\leqslant (2^{k+1}-2^k)u_{2^{k+1}-1}\\
+        &\leqslant u_{2^k}+\dots+u_{2^{k+1}-1}\\
+        &\leqslant (2^{k+1}-2^k)u_{2^k}\\
+        &\leqslant 2^k u_{2^k}
+    \end{aligned}
+\]
+Ainsi, supposons que $\sum\limits 2^k u_{2^k}$ est convergente, et soit $M$ tel que, pour tout $K$,
+on a $\sum\limits_{k=0}^K 2^k u_{2^k}\leq M$. Alors, considérons $N$ un entier et fixons $K$ tel que $N\leq 2^{K+1}-1$.
+On a
+\[
+    \begin{aligned}
+        \sum_{n=1}^N u_n &\leqslant \sum_{n=1}^{2^{K+1}-1}u_n\\
+        &\leqslant \sum_{k=0}^{K}\sum_{j=2^k}^{2^{k+1}-1}u_j\\
+        &\leqslant \sum_{k=0}^K 2^k u_{2^k}\\
+        &\leqslant M
+    \end{aligned}
+\]
+On en conclut que $\sum\limits_n u_n$ est convergente.\\
+Réciproquement, supposons que $\sum\limits_n u_n$ est convergente, et soit $M$ tel que, pour tout $N$, on a 
+$\sum\limits_{n=1}^N u_n\leqslant M$. Alors, pour tout entier $K$, on a
+\[
+    \begin{aligned}
+        \sum_{k=0}^K 2^k u_{2^k} &= u_0+\sum\limits_{k=0}^{K-1}2^{k+1}u_{2^{k+1}}\\
+        &\leqslant u_0+\sum\limits_{k=0}^{K-1}\sum\limits_{j=2^k}^{2^{k+1}}u_j\\
+        &\leqslant u_0+M
+    \end{aligned}
+\]
+Ainsi, la série $\sum\limits_n 2^n u_{2^n}$ est convergente.
+
+\subsection{Règle de \textsc{Kummer}}
+
+\begin{enumerate}
+    \item  L'idée est de se ramener à une somme télescopique. En effet, on a, pour tout $n\geqslant p$, 
+        \[
+            Au_{n+1}\leqslant a_n u_n-a_{n+1}u_{n+1}
+        \]
+        Soit $N\geqslant p$, on somme les inégalités précédentes pour $n$ allant de $p$ à $N-1$. On obtient
+        \[
+            A\sum\limits_{n=p}^{N-1}u_{n+1}\leqslant a_pu_p-a_Nu_N\leqslant a_pu_p
+        \]
+Notant $S_N=\sum\limits_{n=1}^N u_n$ la somme partielle de la série, on obtient
+        \[
+            S_N \leqslant \frac{a_p u_p}A+S_p
+        \]
+        Autrement dit, la suite des sommes partielles $(S_N)_N$ est majorée. Comme on a affaire à une série à termes positifs, ceci assure la convergence de la série.
+        
+    \item L'hypothèse s'écrit encore $a_{n+1}u_{n+1}\geqslant a_nu_n$ pour tout $n\geqslant p$. On en déduit que $a_nu_n\geqslant a_pu_p$, et donc que
+        \[
+            u_n\geqslant a_p u_p\times\frac{1}{a_n}
+        \]
+        Or la série $\sum\limits_n \frac 1{a_n}$ est divergente et à termes positifs. On a donc par comparaison divergence de la série $\sum\limits_n u_n$.
+        
+    \item Supposons que $\frac{u_{n+1}}{u_n}\to l>1$. Posons $a_n=1$. Alors $\frac{u_n}{u_{n+1}}-1\to\frac{ 1}{l}-1<0$, et donc pour $n$ assez grand, on a $\frac{u_n}{u_{n+1}}-1\leqslant 0$. Puisque la série $\sum\limits_n 1$ diverge, il en est de même de $\sum\limits_n u_n$. Au contraire, supposons maintenant que $l<1$. On prend la même suite $(a_n)$, et on observe que  $\frac{u_n}{u_{n+1}}-1\to\frac 1l-1>0$, et donc pour $n$ assez grand,
+on a 
+    \[
+        \begin{aligned}
+            \frac{u_n}{u_{n+1}}-1&\geqslant \frac{\frac{1}{l}-1}2\\
+            &>0
+        \end{aligned}
+    \]
+    Par le premier point, $\sum\limits_n u_n$ converge. 
+
+    \item Pour les deux séries, la règle de \textsc{d'Alembert} ne permet pas de conclure car on est dans son cas litigieux où le quotient
+$u_{n+1}/u_n$ tend vers 1. On va conclure par la règle de \textsc{Kummer} en utilisant à chaque fois $a_n=n$. Pour la première série, on a 
+        \[
+            \begin{aligned}
+                a_n\frac{u_n}{u_{n+1}}-a_{n+1}&=-\frac{n+1}{2n+1}\\
+                &\leq 0
+            \end{aligned}
+        \]	
+        Puisque la série $\sum\limits_n \frac{1}{n}$ est divergente, il en est de même de $\sum\limits_n u_n$.\\
+Pour la deuxième série, on a cette fois 
+        \[
+            \begin{aligned}
+                a_n\frac{u_n}{u_{n+1}}-a_{n+1}&=\frac{n+1}{2n+1}\\
+                &\geqslant\frac{1}{2}\\
+                &>0
+            \end{aligned}
+        \]
+Ainsi, par la règle de \textsc{Kummer}, la série est convergente.
+\end{enumerate}
+
+
+\subsection{Produit infini}
+
+\begin{enumerate}
+    \item Notons $P_n=\prod\limits_{k=0}^n (1+u_k)$. Le produit infini est convergent s'il existe un réel $l\neq 0$ (et qui est donc forcément strictement positif car chaque terme est positif) tel que $p_n\to l$. Par continuité du logarithme (dans le sens direct) et de l'exponentielle (pour le sens réciproque), ceci est équivalent à dire que $\ln(p_n)\to\ln(l)$. Or $\ln(p_n)=\sum\limits_{k=0}^n \ln(1+u_k)$, et donc la convergence du produit infini est bien équivalente à la convergence de la série $\sum_n \ln(1+u_n)$.
+
+    \item Puisque, au voisinage de $+\infty$, $u_n\to 0$ (car la série $\sum\limits_n u_n^2$ converge), on a 
+        \[
+            \ln(1+u_n)=u_n-\frac{u_n^2}2+\petitO{u_n^2}
+        \]
+        
+        Or, la série de terme général $-\frac{u_n^2}2+\petitO{u_n^2}$ est convergente, car son terme général est équivalent à $\frac{-u_n^2}{2}$ qui garde un signe constant. La série de terme général $\ln(1+u_n)$ converge donc si et seulement si la série $\sum\limits_n u_n$ converge. En combinant avec le résultat de la première question, on obtient le résultat voulu.
+
+    \item Si $\sum\limits_n |u_n|$ converge, alors $u_n\to 0$ et donc, pour $n$ assez grand, $0\leqslant u_n^2\leqslant |u_n|$. La série $\sum\limits_n u_n^2$ est donc convergente, et d'après la question précédente, il en est de même du produit infini $\prod\limits_n (1+u_k)$.
+    
+    \item Si $u_n\geqslant 0$, on distingue deux cas. Si $u_n$ ne tend pas vers 0, la série $\sum_n u_n$ diverge, la série $\sum\limits_n \ln(1+u_n)$ aussi (car le terme général ne tend pas vers 0), donc le produit infini ne converge pas. Si $(u_n)$ tend vers 0, alors $\ln(1+u_n)\sim u_n$ terme qui garde un signe constant. Les séries $\sum\limits_n\ln(1+u_n)$ et $\sum\limits_n u_n$ sont donc de même nature, et on conclut en utilisant le résultat de la première question.
+
+    \item Il faut prouver que $\ln\left(1+\frac{(-1)^n}{\sqrt n}\right)$ est le terme général d'une série divergente. Or, 
+        \[
+            \ln\left(1+\frac{(-1)^n}{\sqrt n}\right)=\frac{(-1)^n}{\sqrt n}-\frac1{2n}+\grandO{\frac{1}{n\sqrt n}}
+        \]
+        Les termes extrêmes de la somme sont les termes généraux de séries convergentes, mais pas le terme central, d'où la divergence.
+\end{enumerate}
+
+\subsection{Série divergente divisée}
+
+Prenant les exemples de $a_n=1$ ou $a_n=\frac{1}{n}$, on observe que la série de terme général $b_n$ semble diverger. Prouvons-le (en s'inspirant de la preuve élémentaire de la divergence de la série harmonique). Soit $n$ arbitrairement grand. Soit $p\geqslant n$ tel que $S_p\leqslant 2S_n$ et $S_p>2S_n$. Un tel $p$ existe car la série est divergente et est unique. Alors
+\[
+    \begin{aligned}
+        \sum_{k=n}^n b_k&=\sum_{k=n}^p\frac{a_{k+1}}{S_k}\\
+        &\geqslant \sum_{k=n}^p \frac{a_{k+1}}{2S_n}\\
+        &=\frac{S_{p+1}-S_n}{2S_n}\\
+        &\geqslant
+\frac{1}{2}
+    \end{aligned}
+\]
+La série de terme général $b_n$ ne vérifie pas le critère de \textsc{Cauchy}. Elle est donc divergente.
+
+\end{document}

@@ -1,0 +1,11 @@
+*.aux
+*.dvi
+*.log
+*.pdf
+*.ps
+*.out
+*.pyg
+*.out
+*.toc
+*.pygstyle
+*.synctex.gz

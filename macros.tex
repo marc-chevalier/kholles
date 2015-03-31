@@ -1,0 +1,272 @@
+%&LaTeX
+\documentclass[a4paper,10pt]{article}%||article (twoside)
+\usepackage[utf8]{inputenc}	%Francais
+\usepackage[T1]{fontenc}	%Francais
+\usepackage[francais]{babel}%Francais
+\usepackage{xkeyval}
+\usepackage{tikz}
+\usepackage{layout}		%gabarit de page
+\usepackage{boiboites}	%Mes belles boites
+\usepackage{geometry}	%réglage des marges
+\usepackage{setspace}	%Interligne
+\usepackage{soul}		%Souligne et barre
+\usepackage{ulem}		%Souligne
+\usepackage{eurosym}	%Symbole €
+\usepackage{graphicx}	%Images
+%\usepackage{bookman}	%Police
+%\usepackage{charter}	%Police
+%\usepackage{newcent}	%Police
+%\usepackage{lmodern}	%Police
+\usepackage{mathpazo}	%Police
+%\usepackage{mathptmx}	%Police
+\usepackage{url}		%Citation d'url
+\usepackage{verbatim}	%Citation de code (verbatimet verbatimtab
+\usepackage{moreverb}	%Citation de code
+\usepackage{listings}	%Citation de code coloré
+\usepackage{fancyhdr}	%\pagestyle{fancy}
+\usepackage{wrapfig}    %Insertion d'une image dans un paragraphe
+\usepackage{color}		%Couleurs
+\usepackage{colortbl}	%Couleurs dans un tableau
+\usepackage{amsmath}	%Maths
+\usepackage{amssymb}	%Maths
+\usepackage{mathrsfs}	%Maths
+\usepackage{amsthm}		%Maths
+\usepackage{makeidx}	%Création d'index
+%\usepackage{thmbox} 	%Boites en potence
+\usepackage{stmaryrd}	%Toutes sortes de symboles bizarres
+\usepackage{listings}	%Code
+\usepackage{subfig}  	%Sous-figures flottantes
+\usepackage{placeins}	%\FloatBarrier
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage[hidelinks]{hyperref}
+\usepackage{slashbox}
+\usepackage{xifthen}
+\usepackage{longtable}
+\usepackage{multirow}
+
+\input xy
+\xyoption{all}
+
+%\newtheorem{lemme}{Lemme}
+%\newtheorem{theoreme}{Th\'{e}or\`{e}me}
+%\newtheorem[L]{thm}{Théorème}[section]
+%\newtheorem{proposition}{Proposition}
+%\newtheorem{corollaire}{Corollaire}
+%\newtheorem{definition}{D\'{e}finition}
+%\newtheorem{notation}{Notation}
+%\newtheorem{remarque}{Remarque}
+
+\newboxedtheorem[boxcolor=red, background=red!5, titlebackground=red!50,titleboxcolor = black]{theoreme}{Th\'{e}or\`{e}me}{TheC}		%Theoreme
+\newboxedtheorem[boxcolor=orange, background=orange!5, titlebackground=orange!50,titleboxcolor = black]{definition}{D\'{e}finition}{DefC}			%Definition
+\newboxedtheorem[boxcolor=blue, background=blue!5, titlebackground=blue!20,titleboxcolor = black]{proposition}{Proposition}{ProC}				%Proposition
+\newboxedtheorem[boxcolor=cyan, background=cyan!5, titlebackground=cyan!20,titleboxcolor = black]{corollaire}{Corollaire}{CorC}				%Corollaire
+\newboxedtheorem[boxcolor=blue, background=blue!5, titlebackground=blue!20,titleboxcolor = black]{remarque}{Remarque}{RemC}				%Remarque
+\newboxedtheorem[boxcolor=green, background=green!5, titlebackground=green!30,titleboxcolor = black]{notation}{Notation}{NotC}				%Notation
+\newboxedtheorem[boxcolor=yellow, background=yellow!0, titlebackground=yellow!30,titleboxcolor = black]{exemple}{Exemple}{ExeC}					%Exemple
+\newboxedtheorem[boxcolor=magenta, background=magenta!5, titlebackground=magenta!30,titleboxcolor = black]{lemme}{Lemme}{LemC}					%Lemme
+
+
+%Ensembles usuels
+\renewcommand{\AA}{\mathbb{A}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\KK}{\mathbb{K}}
+\newcommand{\MM}{\mathbb{M}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\OO}{\mathbb{O}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+%Lettres rondes
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\K}{\mathcal{K}}
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\N}{\mathcal{N}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{\mathcal{R}}
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\X}{\mathcal{X}}
+
+%Fleches
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\iso}{\stackrel{\sim}{\ra}}
+\newcommand{\giso}{\stackrel{\sim}{\la}}
+\newcommand{\isononcan}{\simeq}
+\newcommand{\equ}{\approx}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\longra}{\longrightarrow}
+\newcommand{\longRa}{\Longrightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\longla}{\longleftarrow}
+\newcommand{\longLa}{\Longleftarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\LRa}{\Leftrightarrow}
+\newcommand{\longLRa}{\Longleftrightarrow}
+
+%Texte
+\newcommand{\ssi}{si et seulement si\xspace}
+\newcommand{\cad}{c'est-\`a-dire\xspace}
+\newcommand{\num}{{$\mathrm{n}^{\mathrm{o}}$}}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\newcommand{\Turing}{\textsc{Turing }}
+\newcommand{\Grzeg}{\textsc{Grzegorczyk}}
+\newcommand{\Max}{\mathrm{Max}}
+\renewcommand{\Pr}{\mathrm{Pr}}
+
+%Symboles
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\rainbowdash}{\vdash}
+\newcommand{\notrainbowdash}{\nvdash}
+\newcommand{\rainbowDash}{\vDash}
+\newcommand{\notrainbowDash}{\nvDash}
+\newcommand{\Rainbowdash}{\Vdash}
+\newcommand{\notRainbowdash}{\nVdash}
+\newcommand{\bottom}{\bot}
+
+
+
+%Du Chevalier
+\newcommand{\set}[2]
+{
+    \ifthenelse{\equal{#2}{}}
+    {
+        \left\lbrace #1 \right\rbrace
+    }{
+        \left\lbrace #1 \:\left\vert\: #2 \vphantom{#1} \right.\right\rbrace
+    }
+}
+\newcommand{\unionDisjointe}{\sqcup}
+\newcommand{\soustractionNaturelle}{\dot{-}}
+\newcommand{\iverson}[1]{\left[ #1\right]}
+\newcommand{\functionArrow}{\rightarrow}
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\inj}{\hookrightarrow}
+\newcommand{\bij}{\hookrightarrow \hspace{-10pt} \rightarrow}
+\newcommand{\composition}{\circ}
+\newcommand{\leftTuring}{\longleftarrow}
+\newcommand{\rightTuring}{\longrightarrow}
+\newcommand{\HALT}{\texttt{HALT}}
+\newcommand{\nullTuring}{\bigcirc}
+\newcommand{\UTMInit}{\diamondsuit}
+\newcommand{\UTMFin}{\ddagger}
+\newcommand{\kleene}[1]{#1^\star}
+\newcommand{\vect}[2]
+{
+    \ifthenelse{\equal{#2}{}}
+    {
+        \mathrm{Vect}\left(#1\right)
+    }{
+        \mathrm{Vect}_{#1}\left(#2\right)
+    }
+}
+\newcommand{\norme}[2]
+{
+    \ifthenelse{\equal{#2}{}}
+    {
+        \left\lVert #1 \right\rVert
+    }{
+        \left\lVert #1 \right\rVert_{#2}
+    }
+}
+\newcommand{\rec}[2]{\mathrm{Rec}\left( #1, #2 \right)}
+\newcommand{\RecB}[3]{\mathrm{RecB}\left( #1, #2, #3 \right)}
+\newcommand{\SumB}[1]{\mathrm{SumB}\left( #1 \right)}
+\newcommand{\ProdB}[1]{\mathrm{ProdB}\left( #1 \right)}
+\newcommand{\MinB}[1]{\mathrm{MinB}\left( #1 \right)}
+\newcommand{\Min}[1]{\mathrm{Min}\left( #1 \right)}
+\newcommand{\nonDefini}{\bot}
+\newcommand{\hyper}[1]{H_{#1}}
+\newcommand{\knuth}[1]
+{
+    \ifthenelse{\equal{#1}{1}}
+    {
+        \uparrow
+    }{
+        \ifthenelse{\equal{#1}{2}}
+        {
+            \uparrow\uparrow
+        }{
+            \uparrow^{#1}
+        }
+    }
+}
+\newcommand{\et}{\wedge}
+\newcommand{\biget}{\bigwedge}
+\newcommand{\ou}{\vee}
+\newcommand{\xor}{\oplus}
+\newcommand{\non}{\neg}
+\newcommand{\congru}{\equiv}
+\newcommand{\inclu}{\subseteq}
+\newcommand{\domine}{\prec}
+\newcommand{\Ackermann}[1]{\mathcal{A}_{#1}}
+\newcommand{\AckerDom}[1]{\mathfrak{T}_{#1}}
+\newcommand{\alphaeq}{\leftrightarrow_\alpha}
+\newcommand{\betared}{\rightarrow_\beta}
+\newcommand{\betaeq}{=_\beta}
+\newcommand{\etaeq}{\leftrightarrow_\eta}
+\newcommand{\freeVars}[1]{freeVars\left(#1\right)}
+\newcommand{\subs}[3]{\left[#1/#2\vphantom{#3}\right]#3}
+\newcommand{\trans}{\ra}
+\newcommand{\rtrans}{\ra}
+\newcommand{\lrtrans}{\leftrightarrow}
+\newcommand{\motVide}{\varepsilon}
+\newcommand{\longueur}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\card}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\EulerMascheroni}{\gamma}
+\newcommand{\eqFun}{\dot{=}}
+\newcommand{\entiers}[2]{\left\llbracket #1, #2 \right\rrbracket}
+\newcommand{\GrzegFun}[1]{\mathfrak{f}_{#1}}
+\newcommand{\fst}{\pi_1}
+\newcommand{\snd}{\pi_2}
+\newcommand{\Elem}{\E}
+\newcommand{\GrzegClass}[1]{\E^{#1}}
+\newcommand{\TuringRed}{\leqslant_T}
+\newcommand{\TuringEq}{\equiv_T}
+\newcommand{\TuringDeg}[1]{\deg\left( #1 \right)}
+\newcommand{\TuringSaut}[1]{#1'}
+\newcommand{\nTuringSaut}[2]{#1^{\left( #2 \right)}}
+\newcommand{\TuringEmpty}{\emptyset}
+\newcommand{\MTR}{\mathfrak{M}}
+\newcommand{\MTRf}{\mathfrak{M}_f}
+\newcommand{\transCharniere}[2]{\mathfrak{C}\left( #1 , #2 \right)}
+\newcommand{\nbOx}[1]{\mathfrak{C}\left( #1 \right)}
+\newcommand{\dotsVirgule}{\ldots}
+\newcommand{\dotsPlus}{\cdots}
+\newcommand{\dotsLambda}{\ldots}
+\newcommand{\dotsMot}{\ldots}
+\newcommand{\dotsTape}{\cdots}
+\newcommand{\dotsTuring}{\ldots}
+\newcommand{\susp}{...}
+\newcommand{\dotsProd}{\cdots}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\renewcommand{\angle}[1]{\left\langle #1 \right\rangle}
+\newcommand{\abs}[2]{\lambda #1.#2}
+\newcommand{\app}[2]{#1\,#2}
+\newcommand{\Space}{\texttt{[Space]}}
+\newcommand{\LF}{\texttt{[LF]}}
+\newcommand{\Tab}{\texttt{[Tab]}}
+\newcommand{\parties}[1]{\mathcal{P}\left(#1\right)}
+\newcommand{\TuringRedStrict}{<_T}
+\newcommand{\Rat}[1]{\mathfrak{R}\left(#1\right)}
+\newcommand{\UTMBlanc}{\texttt{\_}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\grandO}[1]{\mathcal{O}\left(#1\right)}
+\newcommand{\petitO}[1]{o\left(#1\right)}
+\newcommand{\opname}[1]{\operatorname{#1}}
+\newcommand{\Var}[1]{\text{Var}\left( #1 \right)}
+\newcommand{\prob}[1]{\PP\left( #1 \right)}
+\newcommand{\esp}[1]{\EE\left[ #1 \right]}

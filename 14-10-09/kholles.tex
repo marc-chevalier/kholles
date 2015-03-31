@@ -1,0 +1,135 @@
+\input{../macros.tex}
+
+\title{Exercices de khôlle}
+\author{Marc \textsc{Chevalier}}
+\date{9 octobre 2014}
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\section{Compacité}
+
+\subsection{Suite convergente}
+
+Soit $(E,\vert\cdot\vert)$ un espace vectoriel normé. Soit $(x_n)$ suite convergente de $E$ et soit $x$ sa limite. Montrer que l'ensemble :
+\[
+    A:= \set{x}{}\cup \set{x_n}{n\in \NN}
+\]
+est compact.
+
+\subsection{Du local au global}
+
+Une fonction $f$ définie sur une partie $A\subseteq \RR^n$ est dite localement lipschitzienne si, pour tout $x\in A$, il existe un voisinage $V_x$ de $x$ et une $C>0$ telle que 
+
+\[
+    \forall (y,z)\in A\cap V_x, \norme{f(y) - f(y)}{} \leqslant C \norme{y-z}{}
+\]
+
+Montrer qu'une fonction localement lipschitzienne sur une partie compacte $K$ de $\RR^n$ est en fait lipschitzienne.
+
+\subsection{Intersection de compacts}
+
+Soit $X$ un espace métrique.
+\begin{enumerate}
+
+    \item Soit $(F_n)_n$ une suite décroissante de fermés de $X$ et soit $(x_n)_n$ une suite convergente telle que $x_n\in F_n $ pour tout $n \geqslant 0$. Montrer que
+
+\[
+    \lim_{n\to \infty} x_n \in \bigcap_{n\geqslant 0} F_n
+\]
+
+Donner un exemple pour lequel $\bigcap_{n\geqslant 0} F_n = \emptyset$. 
+    
+    \item Soit maintenant $(K_n)_{n\in\NN}$ une suite décroissante de compacts non vides de $X$. Vérifier que $K = \bigcap\limits_{n\geqslant 0} K_n$ est non vide et que tout ouvert qui contient $K$ contient tous les $K_n$ à partir d'un certain rang.
+
+
+\end{enumerate}
+
+\section{Séries}
+
+\subsection{\textsc{Bertrand} généralisé}
+
+Selon les paramètres $(a_i)_{i\geqslant 0}$ déterminer la convergence de la série
+\[
+    \sum_{n\geqslant 2} \frac{1}{n^{a_0} (\ln(n))^{a_1} (\ln(\ln(n))^{a_2} \ldots }
+\]
+
+\subsection{Terme général donné par un produit}
+Étudier la nature de la série de terme général
+\[
+    u_n=\prod_{q=2}^n\left(1+\frac{(-1)^q}{\sqrt{q}}\right)
+\]
+
+\subsection{Règle de \textsc{Raabe}-\textsc{Duhamel}}
+
+Soit $(u_n)$ une suite à termes positifs telle qu'il existe $a\in \RR$ vérifiant
+\[
+    \frac{u_{n+1}}{u_n}=1-\frac{a}{n}+o\left(\frac{1}{n}\right)
+\]
+
+\begin{enumerate}
+    \item On suppose $a>1$. Soit $b\in ]1,a[$ et posons $v_n = \frac{1}{n^b}$. Comparer $u_n$ et $v_n$. En déduire que $\sum\limits_n u_n$ converge si $a>1$
+    \item Démontrer que $\sum\limits_n u_n$ diverge si $a<1$
+    \item En utilisant les séries de \textsc{Bertrand} montrer que le cas $a=1$ est douteux.
+    \item On suppose que $\frac{u_{n+1}}{u_n}=1-\frac{1}{n}+\grandO{\frac{1}{n^2}}$. On pose $v_n = \ln(n u_n)$ et $w_n=v_{n+1} - v_n$
+    \begin{enumerate}
+        \item Montrer que $w_n=\grandO{\frac{1}{n^2}}$
+        \item En déduire que $u_n \sim \frac{\lambda}{n}$ avec $\lambda>0$ et que $\Sigma u_n$ est divergente.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Même nature}
+
+Soit $(u_n)$ une suite décroissante positive. Montrer que les séries $\sum\limits_n u_n$ et $\sum\limits_n 2^n u_{2^n}$ sont de même nature.
+
+\subsection{Règle de \textsc{Kummer}}
+
+Soit $(u_n)$ et $(a_n)$ deux suites de réels strictement positifs.
+
+\begin{enumerate}
+    \item On suppose qu'il existe $p\in\NN$ et $A>0$ tels que, pour tout $n\geqslant p$, on a 
+    \[
+        a_n\frac{u_n}{u_{n+1}}-a_{n+1} \geqslant A
+    \]
+    Démontrer que la série $\sum\limits_n u_n$ converge.
+    
+    \item On suppose qu'il existe un entier $p\in\NN$ tel que, pour tout $n\geqslant p$, on a 
+    \[
+        a_n\frac{u_n}{u_{n+1}}-a_{n+1} \leqslant 0
+    \]
+    On suppose en outre que $\sum\limits_n \frac{1}{a_n}$ diverge. Prouver que $\sum\limits_n u_n$ diverge.
+    
+    \item Application 1 : retrouver la règle de d'\textsc{Alembert}
+    
+    \item Application 2 : étudier la convergence de $\sum_n u_n$ pour
+    \[
+        u_n=\frac{1\times 3 \times 5 \times \cdots \times (2n-1)}{2\times 4 \times \cdot \times 2n}
+    \]
+    et
+    \[
+        u_n=\frac{1}{n}\cdot \frac{1\times 3 \times 5 \times \cdots \times (2n-1)}{2\times 4 \times \cdot \times 2n}
+    \]
+    
+\end{enumerate}
+
+\subsection{Produit infini}
+
+Soit $(u_n)$ une suite de réels tous strictement supérieurs à $-1$. On dit que le produit infini $\prod\limits_n(1+u_n)$ converge lorsque la suite de terme général $\prod\limits_{k=0}^n(1+u_k)$ admet une limite non nulle notée alors $\prod\limits_{n=0}^{+\infty}(1+u_n)$.
+
+\begin{enumerate}
+    \item Montrer que $\prod\limits_n(1+u_n)$ converge si et seulement si la série $\sum\limits_n \ln(1+u_n)$ converge.
+    \item On suppose que la série $\sum\limits_n u_n^2$ converge. Montrer que $\prod\limits_n(1+u_n)$ est convergent si et seulement si $\sum\limits_n u_n$ converge.
+    \item En déduire que si la série $\sum\limits_n u_n$ est absolument convergente alors le produit infini $\prod\limits_n (1+u_n)$ est convergent.
+    \item Montrer que si $u_n \geqslant 0$ alors le produit $\prod\limits_n(1+u_n)$ est convergent si et seulement si la série $\sum\limits_n u_n$ est convergente.
+    \item Montrer que le produit $\prod\limits_n\left(1+\frac{(-1)^n}{\sqrt{n}}\right)$ est divergent.
+\end{enumerate}
+
+
+\subsection{Série divergente divisée}
+
+Soit $(a_n)$ une suite de réels strictement positive. On suppose que la série de terme général $a_n$ est divergente, et on note $S_n = a_0 + \ldots + a_n$, $b_n=\frac{a_{n+1}}{S_n}$. Quelle est la nature de la nature de la série de terme général $b_n$.
+
+
+\end{document}

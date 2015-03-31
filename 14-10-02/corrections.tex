@@ -1,0 +1,196 @@
+\input{../macros.tex}
+
+\title{Exercices de khôlle \--- Correction}
+\author{Marc \textsc{Chevalier}}
+\date{2 octobre 2014}
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\section{Espaces normés}
+
+\subsection{Un peu de norme sur les matrices}
+
+\begin{enumerate}
+    \item $\forall A\in\M_n(\CC),\norme{A}{} \geqslant 0$.
+    \begin{enumerate}
+        \item Soit $A=\left(a_{i,j}\right)_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}}\in\M_n(\CC)$ telle que $\norme{A}{} = 0$.
+        
+        Comme $\forall (i,j) \in(\entiers{1}{n})^2,\vert a_{i,j}\vert \geqslant 0$, on en déduit que $\forall (i,j) \in(\entiers{1}{n})^2,\vert a_{i,j}\vert = 0$ soit $\forall (i,j) \in(\entiers{1}{n})^2, a_{i,j} \geqslant 0$ donc $A=0$.
+        
+        \item Soit $A=\left(a_{i,j}\right)_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}}\in\M_n(\CC)$ et soit $\lambda \in \CC$.
+        
+        \[
+            \begin{aligned}
+                \norme{\lambda A}{} &= \sup\limits_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}} \vert \lambda a_{i,j}\vert\\
+                &= \sup\limits_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}} \vert\lambda\vert\cdot\vert a_{i,j}\vert\\
+                &= \vert\lambda\vert\sup\limits_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}}\vert a_{i,j}\vert\\
+                &=\vert \lambda \vert \norme{A}{}
+            \end{aligned}
+        \]
+        
+        \item Soit $(A,B)\in(\M_n(\CC))^2$ avec $A=\left(a_{i,j}\right)_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}}$ et $B=\left(b_{i,j}\right)_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}}$
+        
+        On a $\norme{A+B}{} = \sup\limits_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}}\vert a_{i,j} +b_{i,j}\vert$
+        
+        Or, $\forall (i,j)\in(\entiers{1}{n})^2, \vert a_{i,j} + b_{i,j} \vert \leqslant \vert a_{i,j}\vert + \vert b_{i,j}\vert\leqslant\norme{A}{} + \norme{B}{}$.
+        
+        On en déduit $\norme{A+B}{} \leqslant \norme{A}{} + \norme{B}{}$.
+    \end{enumerate}
+
+    \item Soit $(A,B)\in(M_n(\CC))^2$ avec $A=(a_{i,j})_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}}$ et  $B=(b_{i,j})_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}}$
+    
+    $C=AB$. On a $C=(c_{i,j})_{\substack{1\leqslant i\leqslant n \\ 1 \leqslant j \leqslant n}}$ avec $\forall (i,j) \in(\llbracket 1,n \rrbracket)^2,c_{i,j}=\sum\limits_{k=1}^na_{i,k}b_{k,j}$.
+    
+    Donc $\forall (i,j) \in(\llbracket 1,n \rrbracket)^2,\vert c_{i,j} \vert \leqslant \sum\limits_{k=1}^n\vert a_{i,k}\vert\cdot\vert b_{k,j}\vert \leqslant \sum\limits_{k=1}^n \Vert A \Vert\, \Vert B \Vert = n \Vert A \Vert\, \Vert B \Vert$.
+
+    \item Pour tout entier naturel $p \geqslant 1$, notons $(P_p)$ la propriété : $\norme{A^p}{} \leqslant n^{p-1} \Vert A \Vert^p$.
+    Prouvons que $(P_p)$ est vraie par récurrence.
+    
+Pour $p = 1$ : $\Vert A^1\Vert = n^0\Vert A \Vert^1$ donc $(P_1)$ est vraie.
+
+Supposons la propriété $(P_p)$ vraie pour un rang $p \geqslant 1$, c'est-à-dire $\Vert A^p\Vert \leqslant n^{p-1} \Vert A \Vert^p$.
+
+Prouvons que $(P_{p+1})$ est vraie. 
+
+$A_{p+1} = \Vert A \times A^p \Vert$ donc, $\Vert A^{p+1} \Vert \leqslant n \Vert A \Vert \, \Vert A^p\Vert$.
+
+Alors, en utilisant l’hypothèse de récurrence,
+
+$\Vert A^{p+1}\Vert \leqslant n \Vert A \Vert n^{p-1} \Vert A \Vert^p = n^p\Vert A\Vert^p$
+
+On en déduit que $(P_{p+1})$ est vraie.
+
+    \item On a $\forall p\in\NN^*,\left\Vert \frac{A^p}{p!}\right\Vert \leqslant \frac{1}{n} \frac{(n\Vert A \Vert)^p}{p!}$.
+    
+    Or $\forall x\in\RR$, la série exponentielle $\sum \frac{x^p}{p!}$ converge, donc $\sum \frac{(n\Vert A \Vert)^p}{p!}$ converge.
+    
+    Donc, par comparaison de séries à termes positifs, la série $\sum\frac{A^p}{p!}$ est absolument convergente . Or$\M_n(\CC)$ est de dimension finie, donc $\sum\frac{A^p}{p!}$ converge.
+\end{enumerate}
+
+\subsection{Norme de fonction \texorpdfstring{$(\Delta)$}{Delta}}
+
+\begin{enumerate}
+    \item La seule propriété qui pose problème est de prouver que si $N_g(f)=0$ alors $f=0$. Si $N_g$ n'est pas une norme, alors il existe $f\in\C([0,1]), f\neq 0$ avec $N_g(f)=0$. Autrement, $f(x)g(x) = 0$ pour tout $x\in[0,1]$. Puisque $f$ est continue et non nulle, il existe un intervalle $I$, non réduit à un point, sur lequel $f$ ne s'annule pas. Mais alors, on en déduit que $g$ doit être nulle sur $I$. Réciproquement, si $g$ s'annule sur un intervalle non réduit à un point, alors on peut construire $f$ continue qui s'annule hors de $I$ et tel qu'il existe $a \in I$ avec $f(a) \neq 0$ (faire un dessin et construire $f$ comme un \og pic \fg{} ). On a donc $f \neq 0$ et $N_g(f) = 0$, donc $N_g$ n'est pas une norme. Par contraposée, on en déduit que $N_g$ est une norme si et seulement si $g$ ne s'annule pas sur un intervalle non réduit à un point.
+    
+    \item Remarquons déjà que $g$, continue sur le segment $[0,1]$, est bornée par une constante $M > 0$. On a donc $N_g(f) \leqslant M \Vert f \Vert_\infty$ pour tout $f \in E$. Supposons de plus que $g$ ne s'annule pas. Alors, puisque $|g|$ est continue et atteint ses bornes sur $[0,1]$, il existe $\delta >0$ tel que $|g(x)| \geqslant \delta$ pour tout $x\in [0,1]$. On a alors clairement $N_g(f)\geqslant \delta \Vert f \Vert_\infty$ et les deux normes sont équivalentes.
+
+Réciproquement, si $g$ s'annule, prouvons que les deux normes ne sont pas équivalentes. Soit $M > 0$. On va construire $f\in E, f\neq 0$, tel que $\Vert f \Vert_\infty \geqslant MN_g(f)$. Pour cela, on sait, par continuité de $g$, qu'il existe un intervalle $I$, non-réduit à un point, et contenu dans $[0,1]$, tel que $|g(x)|\leqslant \frac{1}{M}$ pour tout $x \in [0,1]$. Comme à la question précédente, on peut construire $f$ nulle en dehors de $I$, avec $\Vert f \Vert_\infty \leqslant 1$ et $f(a) = 1$pour au moins un $a$ de $I$. On a alors $\Vert f \Vert_\infty = 1$ tandis que $N_g(f) = \sup\limits_{x\in I} \vert g(x)f(x)\vert \leqslant \frac{1}{M}$. Ceci prouve bien l'inégalité annoncée, et les deux normes ne sont pas équivalentes. En conclusion, on a démontré que les deux normes sont équivalentes si et seulement si $g$ ne s'annule pas.
+\end{enumerate}
+
+\subsection{Fermeture des sous-espace d'un evn de dimension finie \texorpdfstring{$(\Delta)$}{Delta}}
+Soit $F$ un tel sous-espace et $(e_1,\ldots,e_p)$ une base de $F$. On complète $(e_1,\ldots,e_p)$ en $(e_1,\ldots,e_q)$ une base de $E$. On considère la norme sur $E$ :
+$$
+    \begin{aligned}
+        N:E&\ra \RR^+\\
+        \sum_{i=1}^q x_ie_i &\mapsto \max_i\vert x_i\vert
+    \end{aligned}
+$$
+Rappelons que, puisque $E$ est de dimension finie, toutes les normes sur $E$ sont équivalentes, il suffit de prouver que $F$ est fermé relativement à cette norme. Soit $(x(n))$ une suite de $F$, qui converge avec $x\in E$ pour $N$. Chaque $x(n)$ s'écrit $x(n)=x_1(n)e_1+\ldots+x_q(n)e_q$ avec $x_i(n) =0 si i\geqslant p+1$. On fait la même décomposition pour $x$.
+
+Remarquons maintenant que $\vert x_i(n)-x_i\vert \leqslant N(x(n)-x)$. Ceci prouve que chaque suite $(x_i(n))$ converge vers $x_i$. En particulier pour $i \leqslant p+1 ,x_i=0$ ce qui prouve que $x\in F$.
+
+\subsection{L'intégrale jamais nulle}
+$E=\RR_n[X]$. On pose pour $P=\sum\limits_{i=0}^n a_i X_i$ 
+$$
+    \begin{aligned}
+        \norme{P}{1}&=\int_0^1\vert P(t) \vert \dd t\\
+        N(P) &= \sup_k \vert a_k\vert
+    \end{aligned}
+$$
+Ce sont des normes. Grâce à $N$ on remarque facilement que $E_n$ est un fermé de $E$.
+
+Si $\inf\limits_{P\in E_n} \int_0^1\vert P(t)\vert \dd t = \inf\limits_{P\in E_n}\norme{P}{1}=0$, on peut trouver une suite $(P_k)_{k\in\NN}$ de $E_n$ telle que  $\norme{P_k}{1}\ra 0$. Autrement dit $(P_k)$ converge vers 0. Mais puisque $E_n$ est fermé, on aurait $0\in E_n$, ce qui n'est pas le cas.
+
+\section{Connexité par arcs}
+
+\subsection{Échauffement}
+
+\begin{itemize}
+    \item Le cas $d=1$ est trivialement non connexe.
+    
+        \bigskip    
+    
+        On suppose $d\geqslant 2$. On prend $(a,b) \in \RR^d\setminus \QQ^d$. $a=(a_1,\ldots,a_d)$ et $b=(b_1,\ldots,b_d)$.
+        On suppose que $a_{i_0} \in \RR\setminus \QQ$ et $b_{j_0} \in \RR\setminus\QQ$.
+        
+        On construit un chemin continu entre $a$ et $b$ tel que tous les points du chemin ont au moins une coordonnée irrationnelle.
+        \[
+            (a_1,\ldots,a_{i_0-1},a_{i_0},a_{i_0+1},\ldots,a_d) \longra (b_1,\ldots,b_{i_0-1},a_{i_0},b_{i_0+1},\ldots,b_d) 
+        \]
+        la $i_0^\text{ème}$ composante est irrationnelle.
+        
+        Si $i_0 \neq j_0$ : 
+        \[
+            (b_1,\ldots,b_{i_0-1},a_{i_0},b_{i_0+1},\ldots,b_{j_0},\ldots,b_d) \longra (b_1,\ldots,b_{i_0-1},b_{i_0},b_{i_0+1},\ldots, b_{j_0},\ldots,b_d)
+        \]
+        la $j_0^\text{ème}$ composante est irrationnelle.
+
+        Sinon, on prend $k_0 \neq i_0$ et $x\in\RR\setminus\QQ$.
+        \[
+            \begin{aligned}
+                (b_1,\ldots,b_{i_0-1},a_{i_0},b_{i_0+1},\ldots,b_{k_0},\ldots,b_d) &\longra (b_1,\ldots,b_{i_0-1},a_{i_0},b_{i_0+1},\ldots, \underset{\underset{\text{rang }k_0}{\uparrow}}{x},\ldots,b_d)\\
+                (b_1,\ldots,b_{i_0-1},a_{i_0},b_{i_0+1},\ldots, x,\ldots,b_d) &\longra (b_1,\ldots,b_{i_0-1},b_{i_0},b_{i_0+1},\ldots, x,\ldots,b_d) \\
+                (b_1,\ldots,b_{i_0-1},b_{i_0},b_{i_0+1},\ldots, x,\ldots,b_d) &\longra (b_1,\ldots,b_{i_0-1},b_{i_0},b_{i_0+1},\ldots, b_{k_0},\ldots,b_d)
+            \end{aligned}
+        \]
+        où, respectivement, les composantes d'indice $i_0$, $k_0$ et $i_0$ sont irrationnelles.
+
+    \item Soit $d\in\NN^*$.
+    
+        On prend deux points $(a,b) \in (\RR\setminus\QQ)^d$ et un chemin continu
+        \[
+            \begin{aligned}
+                \varphi : [0,1] &\functionArrow \RR^d\\
+                t &\mapsto (\varphi_i(t))_{i\in\entiers{1}{d}}
+            \end{aligned}                    
+        \]
+        tel que $\varphi(0) = a$ et $\varphi(0) = b$.
+        
+        On suppose $a\neq b$. On prend $i_0$ tel que $a_{i_0} \neq b_{i_0}$.
+        
+        $\forall i \in \entiers{1}{d}, \varphi_i \in \C^0([0,1], \RR)$.
+        
+        $\varphi_{i_0}$ est une application continue de $[0,1]$ dans $\RR$ avec $\varphi(0) \neq \varphi(1)$. Comme $\QQ$ est dense dans $\RR$, il existe $t_0$ tel que $\varphi(t_0) \in \QQ$. Par conséquent, pour tout $d \in \NN^*, (\RR\setminus\QQ)^d$ n'est pas connexe par arc.
+        
+    \item Cet espace est celui des points dont au moins une coordonnée est rationnelle.
+    
+        Si $d=1$, cet espace est trivialement non connexe par arc.
+    
+        Soit $a = (a_1,\ldots,a_d)$ un point de cet espace. On prend $i_0$ tel que $a_{i_0} \in \QQ$.
+        
+        \[
+            \begin{aligned}
+                (a_1,\ldots,a_{i_0-1},a_{i_0},a_{i_0+1},\ldots,a_d) &\longra (0,\ldots,0,a_{i_0},0,\ldots,0)\\
+                (0,\ldots,0,a_{i_0},0,\ldots,0) &\longra (0,\ldots,0,0,0,\ldots,0)
+            \end{aligned}
+        \]
+        
+        Donc on peut arriver par chemin continu à $0$ à partir de tout point. Par conséquent, $\RR^d\setminus(\RR^d\setminus \QQ^d)$ est connexe par arc si $d\geqslant 2$.
+\end{itemize}
+
+\subsection{Connexe, mais pas par arcs}
+
+    $\overline{\Gamma} = \Gamma \cup (\set{\lbrace 0 \rbrace \times [-1,1]}{})$ est connexe, comme adhérence d'un connexe puisque graphe d'une fonction continue sur un intervalle réel. Mais il est trivialement pas connexe par arc.
+
+\section{Topologie}
+
+\subsection{Convexité de l'adhérence et de l'intérieur d'un convexe}
+Soit $(x,y)\in C$, et $t\in [0,1]$. $x$ (resp. $y$) est limite d'une suite $(x_n)$ (resp. $(y_n)$) d'éléments de $C$. Puisque $C$ est convexe, la suite $z_n=tx_n+ (1-t)y_n$ est dans $C$. On passe à la limite : la suite $(z_n)$ converge vers $tx + (1-t)y$, et cette limite est dans $\overline{C}$. D'où $tx+ (1-t)y \in \overline{C}$, ensemble qui est donc convexe.
+
+Prouvons maintenant le résultat concernant l'intérieur. Soit $(x,y)\in \overset{\circ}{C},x\neq y$, et soit $z\in ]x,y[$. Alors il existe une (unique) homothétie de centre $x$ qui envoie $y$ sur $z$ (une homothétie de centre $x$ est une application de la forme $w \mapsto x+\lambda (w - x)$. Cette homothétie transforme la boule de centre $y$ et de rayon $\delta$ en la boule de centre $z$ et de rayon $\lambda \delta$. Soit $\delta >0$ tel que $B(y,\delta) \subseteq C$ et soit $w \in B(z,\lambda \delta)$. Alors $w=h(u)$, avec $u$ un point de $B(y,\delta)$, et $h$ l'homothétie précédemment considérée. En particulier, $w$ est sur le segment $[x,u]$ et est donc un élément de $C$. Autrement dit, on vient de prouver que $B(z,\lambda \delta) \subseteq C$, ce qui prouve $z \in \overset{\circ}{C}$. $\overset{\circ}{C}$ est convexe.
+
+\subsection{Adhérence des sous-espaces vectoriels}
+\begin{enumerate}
+    \item Soit $(x,y) \in \overline{V}^2$, et $(\lambda,\mu) \in \RR^2$. $x$ (resp. $y$) est limite d'une suite $(x_n)$ (resp. $(y_n)$) d'éléments de $V$ Puisque $V$ est un sous-espace vectoriel, la suite $z_n = \lambda x_n + \mu y_n$ évolue dans $V$. On passe à la limite : $z_n$ converge vers $z=\lambda x + \mu y$ qui est un élément de $\overline{V}$ puisque $z_n \in V$.
+    \item Soit $a\in V$ et $\varepsilon > 0$ tel que $V(a,\varepsilon) \subseteq V$. Soit $x\in B(0,\varepsilon)$. Puisque $x+a\in B(a,\varepsilon) \subseteq V$ et que $V$ est un espace vectoriel, on a $x \in V$. D'où $B(0,\varepsilon)\subseteq V$. Si maintenant $x\neq 0$ est dans $E$, alors $a=\frac{\varepsilon x }{2 \Vert x \Vert}$ est dans $B(0,\varepsilon)$ donc dans $V$, et puisque $V$ est un sous espace vectoriel, c'est aussi le cas de $x$.
+\end{enumerate}
+
+\section{Application linéaire continue}
+
+\subsection{Régularité de la dérivation \texorpdfstring{$(\Delta)$}{Delta}}
+Pour $a\in\RR$, la fonction $f_a(x)=e^{ax}$ est dans $E$, et elle vérifie $Df_a=af_a$. Or si $D$ était continue pour la norme $N$, il existerait une constante $C>0$ telle que $\forall a\in \RR, N(D(f_a)) \leqslant CN(f_a)$. On obtiendrait alors que, pour tout $a\in\RR$, $\vert a \vert N(f_a) \leqslant CN(f_a) \Rightarrow \vert a \vert \leqslant C$. D'où une contradiction.
+
+\end{document}

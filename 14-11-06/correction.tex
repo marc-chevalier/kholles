@@ -1,0 +1,351 @@
+\input{../macros.tex}
+
+\title{Exercices de khôlle \--- Correction}
+\author{Marc \textsc{Chevalier}}
+\date{6 novembre 2014}
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\section{Séries de fonction}
+
+\subsection{Théorème de \textsc{Bernstein} et théorème de \textsc{Weierstrass}}
+
+\begin{enumerate}
+    \item
+        \begin{enumerate}
+            \item Soit $n\in \NN^*$.
+                \begin{itemize}
+                    \item Si $f : x\mapsto 1$
+                    \[
+                        \begin{aligned}
+                            B_n(f) &= \sum\limits_{k=0}^n\binom{n}{k}X^k(1-X)^{n-k}\\
+                            &= (X+(1-X))^n\\
+                            &= 1
+                        \end{aligned}                                            
+                    \]
+                    \item Si $f : x\mapsto x$
+                    \[
+                        \begin{aligned}
+                            B_n(f) &= \sum\limits_{k=0}^n\frac{k}{n}\binom{n}{k}X^k(1-X)^{n-k}\\
+                            &= \sum\limits_{k=1}^n\binom{n-1}{k-1}X^k(1-X)^{n-k}\\
+                            &= X \sum\limits_{k=1}^n\binom{n-1}{k-1}X^{k-1}(1-X)^{(n-1)-(k-1)}\\
+                            &= X \sum\limits_{k=0}^{n-1}\binom{n-1}{k}X^{k}(1-X)^{(n-1-k)}\\
+                            &= X
+                        \end{aligned}                                            
+                    \]
+                    \item Si $f : x \mapsto x(x-1)$, alors $B_n(f) = \sum\limits_{k=0}^n\binom{n}{k}\frac{k}{n}\left(\frac{k}{n}-1\right) X^k(1-X)^{n-k}$ et donc $B_1(f)=0$. Pour $n \geqslant 2$ et $k\in\entiers{1}{n-1}$.
+                        \[
+                            \begin{aligned}
+                                \binom{n}{k}\frac{k}{n}\left(\frac{k}{n}-1\right) &= - \frac{1}{n^2}k(n-k)\frac{n!}{k!(n-k)!}\\
+                                &= -\frac{n-1}{n} \frac{(n-2)!}{(k-1)(n-k-1)!}\\
+                                &= - \frac{n-1}{n} \binom{n-2}{k-1}
+                            \end{aligned}
+                        \]
+                        par suite
+                        \[
+                            \begin{aligned}
+                                B_n(f) &= -\frac{n-1}{n} \sum\limits_{k=1}^{n-1} X^k (1-X)^{n-k}\\
+                                &= - \frac{n-1}{n} X (1-X)\sum\limits_{k=1}^{n-1} X^{k-1} (1-X)^{(n-2)-(k-1)}\\
+                                &= - \frac{n-1}{n} X(1-X) \sum\limits_{k=0}^{n-2} \binom{n-2}{k} X^k(1-X)^{n-2-k}\\
+                                &= -\frac{n-1}{n} X(1-X)
+                            \end{aligned}
+                        \]
+                        Ce qui reste vrai pour $n=1$.
+                \end{itemize}
+            \item D'après la question précédente
+                \[
+                    \begin{aligned}
+                        \sum\limits_{k=0}^n \binom{n}{k}(k-nX)^2X^k(1-X)^{n-k} &= \sum\limits_{k=0}^n \binom{n}{k} k^2X^k(1-X)^{n-1}\\&\qquad- 2nX \sum\limits_{k=0}^n \binom{n}{k} kX^k(1-X)^{n-1}\\&\qquad+n^2X^2\sum\limits_{k=0}^n \binom{n}{k}X^k(1-X)^{n-k}\\
+                        &= \sum\limits_{k=0}^n\binom{n}{k} k(k-n)X^k(1-X)^{n-k}\\&\qquad - n(2X-1) \sum\limits_{k=0}^n \binom{n}{k}kX^k(1-X)^{n-k}\\&\qquad n^2 X^2 \sum\limits_{k=0}^n\binom{n}{k} X^k(1-X)^{n-k}\\
+                        &= n^2 \sum\limits_{k=0}^n \frac{k}{n}\left(\frac{k}{n}-1\right) \binom{n}{k} X^k (1-X)^{n-k}\\&\qquad - n^2(2X-1)\sum\limits_{k=0}^n\binom{n}{k} \frac{k}{n} X^k(1-X)^{n-k} + n^2X^2\\
+                        &= -n(n-1)X(1-X) - n^2(2X-1)X + n^2X^2\\
+                        &= -nX^2 + nX\\
+                        &= nX(1-X)
+                    \end{aligned}
+                \]
+        \end{enumerate}
+    \item Soit $\varepsilon >0$. Soit $n$ un entier naturel non nul et $\alpha$ un réel strictement positif donné. Soit $x$ un réel de $[0,1]$. Notons $A$ (resp. $B$) l'ensemble des entiers $k\in\entiers{0}{n}$ tels que $\left\lvert 1-\frac{k}{n} \right\rvert < \alpha$ (resp. $\left\lvert 1-\frac{k}{n} \right\rvert \geqslant \alpha$).
+        \[
+            \begin{aligned}
+                \lvert f(x) - B_n(f)(x)| &= \left\lvert \sum\limits_{k=0}^n\binom{n}{k}\left(f(x) - f\left(\frac{k}{n}\right)\right) x^k (1-x)^{n-k} \right\rvert\\
+                &\leqslant \sum\limits_{k\in A}\binom{n}{k}\left\lvert f(x) - f\left(\frac{k}{n}\right)\right\rvert x^k (1-x)^{n-k}\\&\qquad + \sum\limits_{k\in B}\binom{n}{k}\left\lvert f(x) - f\left(\frac{k}{n}\right)\right\rvert x^k (1-x)^{n-k}
+            \end{aligned}                    
+        \]
+        $f$ est continue sur $[0,1]$ et donc est uniformément continue sur ce segment d'après le théorème de \textsc{Heine}. Par suite, il existe $\alpha > 0$ tel que si $x$ et $y$ sont deux réels de $[0,1]$ tels que $\lvert x - y \rvert < \alpha$ alors $\lvert f(x) - f(y) \rvert < \frac{\varepsilon}{2}$. $\alpha$ est ainsi dorénavant fixé. Pour ce choix de $\alpha$,
+        \[
+            \begin{aligned}
+                \sum\limits_{k\in A}\binom{n}{k}\left\lvert f(x) - f\left(\frac{k}{n}\right)\right\rvert x^k (1-x)^{n-k} &\leqslant \frac{\varepsilon}{2} \sum\limits_{k\in A}\binom{n}{k} x^k (1-x)^{n-k}\\
+                &\leqslant \frac{\varepsilon}{2} \sum\limits_{k=0}^n\binom{n}{k} x^k (1-x)^{n-k}\\
+                &=\frac{\varepsilon}{2}
+            \end{aligned}
+        \]
+        Ensuite la fonction $f$ est continue sur le segment $[0,1]$ et donc est bornée sur ce segment. Soit $M$ un majorant de la fonction $\lvert f\rvert$ sur $[0,1]$.
+        \[
+            \begin{aligned}
+                \sum\limits_{k\in B}\binom{n}{k}\left\lvert f(x) - f\left(\frac{k}{n}\right)\right\rvert x^k (1-x)^{n-k} &\leqslant 2M\sum\limits_{k\in B}\binom{n}{k} x^k (1-x)^{n-k}
+            \end{aligned}
+        \]
+        Mais si $k\in B$, l'inégalité $\left\lvert x- \frac{k}{n} \right\rvert \geqslant \alpha$ fournit $1\leqslant \frac{1}{\alpha^2n^2} (k-nx)^2$ et donc
+        \[
+            \begin{aligned}
+                \sum\limits_{k\in B}\binom{n}{k} x^k(1-x)^{n-k} \leqslant 1 &\leqslant \frac{1}{\alpha^2n^2}\sum\limits_{k\in B}\binom{n}{k} (k-nx)^2 x^k(1-x)^{n-k}\\
+                &\leqslant \frac{1}{\alpha^2n^2} \sum\limits_{k=0}^n \binom{n}{k} (k-nx)^2 x^k (1-x)^{n-k}\\
+                &= \frac{1}{\alpha^2n^2} nx(1-x)\\
+                &= \frac{1}{\alpha^2n}\left(\frac{1}{4}-\left( x- \frac{1}{2} \right)^2 \right)\\
+                &\leqslant \frac{1}{4\alpha^2n}
+            \end{aligned}
+        \]
+        En résumé, pour tout réel $x\in[0,1]$
+        \[
+            \lvert f(x) - B_n(f)(x) \rvert \leqslant \frac{\varepsilon}{2} + 2M \frac{1}{4\alpha^2n} = \frac{\varepsilon}{2} + \frac{M}{2\alpha^2n}
+        \]
+        Maintenant, puisque $\lim\limits_{n\to +\infty} \frac{M}{2\alpha^2 n} =0$, il existe un entier naturel non nul $N$ tel que pour $n\geqslant N$, $\frac{M}{2\alpha^2n}< \frac{\varepsilon}{2}$. Pour $n\geqslant N$, on $\lvert f(x) - B_n(f)(x) \rvert < \varepsilon$. Donc la suite de polynômes $(B_n(f))_{n\in\NN^*}$ converge uniformément vers $f$ sur $[0,1]$.
+        \item La question précédente montre le théorème de \textsc{Weierstrass} dans le cas du segment $[0,1]$. Soit $[a,b]$ un segment quelconque et f une application continue sur $[a,b]$. Pour $x\in[0,1]$, on pose $g(x) = f(a+(b-a)x)$. La fonction $g$ est continue sur $[0,1]$ et donc il existe une suite de polynômes $(P_n)$ convergeant uniformément vers $g$ sur $[0,1]$. Pour $n\in\NN$, posons $Q_n = P_n\left(\frac{X-a}{b-a}\right)$. Soit $\varepsilon >0$. Il existe $N\geqslant 1$ tel que $\forall n \geqslant N,  \forall y \in [0,1], \lvert g(y)-P_n(y)\rvert < \varepsilon$. Soit $x\in[a,b]$ et $n\geqslant N$. Le réel $y = \frac{x-a}{b-a}$ est dans $[0,1]$ et 
+        \[
+            \begin{aligned}
+                \lvert f(x) - Q_n(x) \rvert &= \lvert f(a+(b-a)y) - Q_n(a+(b-a)y) \rvert\\
+                &= \lvert g(y) - P_n(y) \rvert\\
+                &<\varepsilon
+            \end{aligned}                
+        \]
+        Ceci démontre que la suite de polynômes $(Q_n)_{n\in\NN}$ converge uniforme vers la fonction $f$ sur $[a,b]$.
+\end{enumerate}
+
+\subsection{Équivalent}
+
+Soit $x\in ]-1,1[$. Pour $n\in\NN^*$, $\left\lvert x^{n^2}\right\rvert = \lvert x \rvert ^{n^2} \leqslant \lvert x \rvert ^n$. Puisque la série numérique de terme général $\lvert x \rvert ^n$ converge, on en déduit que la série de terme général $x^n$ est absolument convergente et en particulier convergente. Donc $f$ est bien définie sur $]-1,1[$.
+
+Soit $x\in]0,1[$. La fonction $t\mapsto x^{t^2} = e^{t^2\ln x}$ est décroissante sur $[0, + \infty [$. Donc, 
+\[
+    \forall k \in \NN^*, \int_k^{k+1} x^{t^2} \dd t \leqslant \int_{k-1}^k x^{t^2} \dd t
+\]
+En somment ces inégalités, on obtient
+
+\begin{equation}\label{Equivalent:1}
+    \forall x \in ]0,1[, \int_1^{+\infty} x^{t^2} \dd t \leqslant f(x) \leqslant \int_0^{+\infty} x^{t^2} \dd t
+\end{equation}
+
+Soit $x\in]0,1[$. En posant $u=t\sqrt{-\ln x}$, on obtient
+\[
+    \begin{aligned}
+        \int_0^{+\infty} x^{t^2} \dd t &= \int_0^{+\infty} e^{t^2 \ln x} \dd t\\
+        &= \int_0^{+\infty} e^{-\left(t\sqrt{-\ln x}\right)^2} \dd t\\
+        &= \frac{1}{\sqrt{-\ln x}} \int_0^{+\infty} e^{-u^2} \dd u\\
+        &= \frac{\sqrt{\pi}}{2\sqrt{-\ln x}}
+    \end{aligned}
+\]
+L'encadrement (\ref{Equivalent:1}) s'écrit alors
+\[
+    \forall x \in ]0,1[, \frac{\sqrt{\pi}}{2\sqrt{-\ln x}} - \int_0^1 x^{t^2} \dd t\leqslant f(x) \leqslant \frac{\sqrt{\pi}}{2\sqrt{-\ln x}}
+\]
+
+Comme $\lim\limits_{\substack{x\to 1 \\ x <1}} \frac{\sqrt{\pi}}{2\sqrt{-\ln x}} = + \infty$, on a montré que
+\[
+    \sum\limits_{n=1}^{+\infty} x^{n^2} \underset{\substack{x\to 1\\x<1}}{\sim} \frac{\sqrt{\pi}}{2\sqrt{-\ln x}}
+\]
+
+\subsection{Premières études de convergence uniforme}
+
+\begin{enumerate}
+    \item On a :
+        \[
+            f_n(x)=\frac{1-x^n}{1-x}
+        \]
+        et donc la suite converge simplement vers $f(x)=\frac{1}{1-x}$ sur $]-1,1[$. Posons $\varphi_n(x)=f(x)-f_n(x)$. On a :
+        \[
+            \varphi_n(x)=-\frac{x^n}{1-x}
+        \]
+        qui tend vers $-\infty$ si x tend vers 1. D'où $\norme{f_n-f}{\infty}=+\infty$ et la convergence n'est pas uniforme sur $]-1,1[$. Dans le deuxième cas, on vérifie aisément en étudiant $\varphi_n$ que 
+        \[
+            \sup_{x\in[-a;a]}|\varphi_n(x)|=\frac{a^n}{1-a}
+        \]
+ce qui garantit la convergence uniforme sur $[-a,a]$.
+    \item Il est clair que $f_n$ converge simplement vers la fonction nulle sur $[0,1]$ (séparer les cas $x=0$, $x=1$, $x\in]0,1[$). D'autre part, on a
+        \[
+            f_n'(x)=-nx^{n-1}(n\ln x+1)
+        \]
+        et la dérivée s'annule en $e^{\frac{-1}{n}}$. Or,
+        \[
+            f_n\left(e^{\frac{-1}{n}}\right)=-e^{-1} \Ra \norme{f_n}{\infty} \geqslant e^{-1}
+        \]
+        La convergence n'est pas uniforme.
+    \item L'inégalité $|f_n(x)|\leqslant e^{-nx}$ prouve que $f_n$ converge simplement vers la fonction nulle. Posons $g(x)=e^{-x}\sin(2x)$. On a $f_n(x)=g(nx)$, et donc la suite 
+        \[
+            \norme{f_n}{\infty}=\norme{g}{\infty}>0
+        \]
+        vaut une constante strictement positive, elle ne peut pas tendre vers 0 quand $n\to+\infty$ : la convergence n'est pas uniforme sur $\RR^+$. En revanche, si $a>0$ et $x\geqslant a$, on a :
+        \[
+            |f_n(x)|\leqslant e^{-na}
+        \]
+        ce qui prouve la convergence uniforme sur $[a,+\infty[$.
+\end{enumerate}
+
+\subsection{Suite récurrente}
+
+\begin{enumerate}
+    \item Fixons $x\in I$ et posons, pour $t\in I$, $\varphi(t)=t+\frac{1}{2}(x-t^2)$, de sorte que $f_{n+1}(x)=\phi(f_n(x))$. Posons, pour simplifier les notations, $u_n=f_n(x)$. On doit étudier la suite récurrente $u_{n+1}=\varphi(u_n)$, avec $u_0=0$. Remarquons que $\varphi'(t)=1-t\geqslant 0$ et donc $\varphi$ est croissante sur $I$. On a de plus $\varphi(I)=[\varphi(0),\varphi(1)]=[x/2,(x+1)/2]$ et donc $\varphi(I)\subseteq I$. Ainsi, $(u_n)$ est à valeurs dans $I$. De plus, $u_1\geqslant u_0$ et donc la suite $(u_n)$ est croissante. Ainsi, la suite est croissante, majorée donc elle converge. Sa limite $l$ vérifie $\varphi(l)=l$ soit immédiatement $l=\sqrt{x}$.
+    \item D'après la question précédente, on sait que, pour tout entier $n\in\mathbb{N}$ et tout $x\in I$, on a $f_n(x)\leqslant \sqrt{x}$ (la suite est croissante). On en déduit que 
+        \[
+            \begin{aligned}
+                0\leqslant \sqrt x-{f_{n+1}(x)}&=\sqrt x-f_n(x)-\frac{x-f_n(x)^2}{2}\\
+                &=(\sqrt x-f_n(x))\left(1-\frac{\sqrt{x}+f_n(x)}{2}\right)\\
+                &\leqslant(\sqrt x-f_n(x))(1-\sqrt{x})
+            \end{aligned}
+        \]
+        Par récurrence immédiate, on obtient
+        \[
+            0\leqslant \sqrt{x}-f_n(x)\leqslant (\sqrt{x}-f_n(0))(1-\sqrt{x})^n
+        \]
+        ce qui est le résultat demandé.
+    \item Si on étudie la fonction $t\mapsto t(1-t)^n$ sur $[0,1]$, on vérifie qu'elle atteint son maximum en $t=\frac{1}{n+1}$. On en déduit que
+        \[
+            0\leqslant \sqrt{x}-f_n(x)\leqslant \frac{1}{n+1}\left(1-\frac{1}{n+1}\right)^n
+        \]
+        Passant par l'exponentielle, on remarque que 
+        \[
+            \left(1-\frac{1}{n+1}\right)^n\to e^{-1}
+        \]
+        et donc on a majoré $|\sqrt{x}-f_n(x)|$ par une quantité indépendante de $x$ et qui tend vers 0. Ceci prouve la convergence uniforme de la suite sur $[0,1]$.
+\end{enumerate}
+
+\subsection{Non-dérivabilité à droite d'une fonction limite}
+
+\begin{enumerate}
+    \item Pour $t<0$, $\frac{e^{-nt}}{1+n^2}$ ne tend pas vers 0. La série diverge donc grossièrement. Pour $t\geqslant 0$, on a l'inégalité suivante :
+        \[
+            0\leqslant\frac{e^{-nt}}{1+n^2}\leqslant \frac{1}{1+n^2}
+        \]
+        Comme le terme de droite est le terme général d'une série convergente, la série $\sum\limits_n \frac{e^{-nt}}{1+n^2}$ est convergente. Donc le domaine de définition de $f$ est $[0,+\infty[$.
+    \item L'inégalité précédente prouve en fait que la série de fonctions est normalement convergente sur $[0,+\infty[$. Chaque fonction $t\mapsto \frac{e^{-nt}}{1+n^2}$ étant continue, $f$ est elle-même continue. On va maintenant étudier la convergence normale des séries dérivées. Fixons $a>0$ et posons $f_n(t)=\frac{e^{-nt}}{1+n^2}$. Alors, pour $k\geqslant 1$, on a 
+        \[
+            f_n^{(k)}(t)=(-1)^k n^k \frac{e^{-nt}}{1+n^2}
+        \]
+        En particulier, pour $t\geqslant a$, on a 
+        \[
+            \left|f_n^{(k)}(t)\right|\leqslant n^k\frac{e^{-na}}{1+n^2}
+        \]
+        Or, le terme apparaissant à droite est le terme général d'une série convergente, puisque $a>0$ et donc
+        \[
+            n^k \frac{e^{-na}}{1+n^2}=\petitO{n^{-2}}
+        \]
+        Ainsi, chaque série $\sum\limits_n f_n^{(k)}$ converge normalement sur $[a,+\infty[$. Ceci prouve que $f$ est de classe $\C^\infty$ sur $[a,+\infty[$. Comme $a>0$ est arbitraire, la fonction est de classe $\C^\infty$ sur $]0,+\infty[$.
+        \item
+            \begin{enumerate}
+                \item Puisque $\frac{n}{1+n^2}\underset{+\infty}{\sim}\frac{1}{n}$, la série $\sum\limits_{n\geqslant 1}\frac{n}{1+n^2}$ est divergente, et la suite de ces sommes partielles tend vers $+\infty$. On en déduit l'existence de $N\geqslant 1$ tel que 
+                    \[
+                        \sum\limits_{n=1}^N\frac{n}{1+n^2}\geqslant N
+                    \]
+                \item Lorsque $h$ tend vers 0, la quantité $\sum\limits_{n=1}^N \frac{e^{-nh}-1}{h(1+n^2)}$ converge vers $\sum\limits_{n=1}^N \frac{-n}{1+n^2}\leqslant -A$. En particulier, il existe $\delta>0$ tel que, pour tout $h\in]0,\delta[$, on a
+                    \[
+                        \sum\limits_{n=1}^N \frac{e^{-nh}-1}{h(1+n^2)}\leqslant -A+1
+                    \]
+                \item Le taux de variation de $f$ en 0 est égal à 
+                    \[
+                        \frac{f(h)-f(0)}{h}=\sum_{n=1}^{+\infty}\frac{e^{-nh}-1}{h(1+n^2)}
+                    \]
+                    Puisque, pour tout $n\geqslant 1$, $e^{-nh}\leqslant 1$, on en déduit que 
+                    \[
+                        \frac{f(h)-f(0)}{h}\leqslant \sum\limits_{n=1}^N \frac{e^{-nh}-1}{h(1+n^2)}
+                    \]
+                    D'après le résultat de la question précédente, on peut trouver $\delta<0$ tel que, pour tout $h\in]0,\delta[$, on a
+                    \[
+                        \frac{f(h)-f(0)}{h}\leqslant -A+1
+                    \]
+                    Ceci est la définition de $\lim\limits_{h\to 0^{+}}\frac{f(h)-f(0)}{h}=-\infty$. Ainsi, $f$ n'est pas dérivable en 0, mais sa courbe représentative admet au point d'abscisse 0 une tangente verticale.
+            \end{enumerate}
+    \item Puisque la série définissant $f$ converge normalement sur $\mathbb R$, on peut appliquer le théorème d'interversion des limites. On en déduit
+        \[
+            \lim_{t\to+\infty}\sum_{n\geq 1}\frac{e^{-nt}}{1+n^2}=\sum_{n\geq 1}\lim_{t\to+\infty}\frac{e^{-nt}}{1+n^2}=0
+        \]
+\end{enumerate}
+
+\subsection{Zêta alternée}
+
+\begin{enumerate}
+    \item Si $x\leqslant 0$, la série diverge grossièrement, et si $x>0$, elle vérifie le critère des séries alternées et donc elle est convergente.
+
+    \item Posons $v_n(x)=\frac{1}{n^x}$ de sorte que $\mu(x)=\sum\limits_{n\geqslant 1}(-1)^{n+1}v_n(x)$. Fixons $a>0$. Puisque chaque fonction $v_n$ est de classe $\C^\infty$, il suffit de prouver que, pour chaque $p\geqslant 0$, la série $\sum\limits_{n\geqslant 1}(-1)^{n+1}v_n^{(p)}(x)$ converge uniformément sur $[a,+\infty[$. On a 
+        \[
+            v_n^{(p)}(x)=(-1)^p(\ln n)^p n^{-x}
+        \]
+        On souhaite appliquer le critère des séries alternées à $\sum\limits_{n\geqslant 1}(-1)^{n+1}v_n(x)$ mais il faut vérifier que la valeur absolue du terme général est bien décroissante. Pour cela, on introduit $h(t)=(\ln t)^p t^{-x}$. Alors $h$ est dérivable et $h'(t)=(\ln t)^{p-1}t^{-x-1}(p-\ln x)$. Lorsque $n$ est supérieur à $\exp(p/x)$, on a $h(n+1)\leq h(n)$ et donc la série vérifie bien le critère des séries alternées. En particulier, pour tout $x\in[a,+\infty[$, pour tout $n\geqslant\exp(p/a)$ (remarquons que ce terme ne dépend pas du $x$ choisi dans $[a,+\infty[$), on a par le critère des séries alternées 
+        \[
+            |R_n(x)|\leqslant \ln^p (n+1)^{-x}\leqslant \ln^p(n+1)(n+1)^{-a}
+        \]
+        où $R_n(x)$ désigne le reste de la série $\sum\limits_{n\geqslant 1}(-1)^{n+1}v_n^{(p)}(x)$. Le reste est donc majorée indépendamment de $x\in[a,+\infty[$ par une suite qui tend vers 0. La série $\sum\limits_{n\geqslant 1}(-1)^{n+1}v_n^{(p)}(x)$ est donc uniformément convergente sur $[a,+\infty[$ pour $p\geqslant 0$, ce qui prouve que $\mu$ est de classe $\C^\infty$ sur $]0,+\infty[$ et que $\mu^{(p)}(x)=\sum\limits_{n\geqslant 1}(-1)^{n+1}v_n^{(p)}(x)$.
+    \item Puisque la série définissant $\mu$ converge uniformément sur $[1,+\infty[$, on peut appliquer le théorème d'interversion des limites. Or, pour chaque $N\geqslant 1$, 
+        \[
+            \lim_{x\to+\infty}\sum_{n=1}^N \frac{(-1)^{n+1}}{n^x}=0
+        \]
+        On en déduit que $\mu$ tend vers 0 en $+\infty$.
+        \item  
+            \begin{enumerate}
+                \item C'est un calcul simple si on remarque que $\mu(x)=1+\sum\limits_{n\geqslant 1}\frac{(-1)^{n+2}}{(n+1)^x}.$
+                \item Fixons $x>0$. Alors la suite $n\mapsto\frac{1}{n^x}-\frac{1}{(n+1)^x}$ tend vers 0 et est décroissante (par exemple, en utilisant le théorème des accroissements finis ou en étudiant la fonction $u\mapsto \frac{1}{u^x}-\frac{1}{(u+1)^x}$). En particulier, la série $\sum\limits_{n\geqslant 1}(-1)^{n+1}\left(\frac{1}{n^x}-\frac{1}{(n+1)^x}\right)$ vérifie le critère des séries alternées. Sa somme est donc du signe de son premier terme, ici positif, et est majorée en valeur absolue par la valeur absolue du premier terme, ici $1-frac{1}{2^x}$. On trouve bien que
+                    \[
+                        0\leqslant -1+2\mu(x)\leqslant 1-\frac{1}{2^x}
+                    \]
+                \item Il suffit d'écrire que 
+                    \[
+                        \frac{1}{2}\leqslant \mu(x)\leqslant 1-\frac{1}{2^{x+1}}
+                    \]
+                    et d'appliquer le théorème des gendarmes.
+            \end{enumerate}
+\end{enumerate}
+\subsection{Non-dérivabilité à droite d'une fonction limite}
+
+\begin{enumerate}
+    \item Pour $t<0$, $\frac{e^{-nt}}{1+n^2}$ ne tend pas vers 0. La série diverge donc grossièrement.
+Pour $t\geqslant 0$, on a l'inégalité suivante :
+        \[
+            0\leqslant\frac{e^{-nt}}{1+n^2}\leqslant \frac{1}{1+n^2}
+        \]
+        Comme le terme de droite est le terme général d'une série convergente, la série $\sum\limits_n \frac{e^{-nt}}{1+n^2}$ est convergente. Donc le domaine de définition de $f$ est $[0,+\infty[$.
+    \item L'inégalité précédente prouve en fait que la série de fonctions est normalement convergente sur $[0,+\infty[$. Chaque fonction $t\mapsto \frac{e^{-nt}}{1+n^2}$ étant continue, $f$ est elle-même continue. On va maintenant étudier la convergence normale des séries dérivées. Fixons $a>0$ et posons $f_n(t)=\frac{e^{-nt}}{1+n^2}$. Alors, pour $k\geqslant 1$, on a
+        \[
+            f_n^{(k)}(t)=(-1)^k n^k \frac{e^{-nt}}{1+n^2}
+        \]
+        En particulier, pour $t\geqslant a$, on a 
+        \[
+            \left|f_n^{(k)}(t)\right|\leqslant n^k\frac{e^{-na}}{1+n^2}
+        \]
+        Or, le terme apparaissant à droite est le terme général d'une série convergente, puisque $a>0$ et donc
+        \[
+            n^k \frac{e^{-na}}{1+n^2}=\petitO{n^{-2}}
+        \]
+        Ainsi, chaque série $\sum_n f_n^{(k)}$ converge normalement sur $[a,+\infty[$. Ceci prouve que $f$ est de classe $\C^\infty$ sur $[a,+\infty[$. Comme $a>0$ est arbitraire, la fonction est de classe $\C^\infty$ sur $]0,+\infty[$.
+        \item 
+            \begin{enumerate}
+                \item Puisque $\frac{n}{1+n^2}\underset{+\infty}{\sim}\frac{1}{n}$, la série $\sum\limits_{n\geqslant 1}\frac{n}{1+n^2}$ est divergente, et la suite de ces sommes partielles tend vers $+\infty$. On en déduit l'existence de $N\geqslant 1$ tel que 
+                    \[
+                        \sum\limits_{n=1}^N\frac{n}{1+n^2}\geqslant N
+                    \]
+                \item Lorsque $h$ tend vers 0, la quantité $\sum\limits_{n=1}^N \frac{e^{-nh}-1}{h(1+n^2)}$ converge vers $\sum_{n=1}^N \frac{-n}{1+n^2}\leqslant -A$. En particulier, il existe $\delta>0$ tel que, pour tout $h\in]0,\delta[$, on a 
+                    \[
+                        \sum_{n=1}^N \frac{e^{-nh}-1}{h(1+n^2)}\leqslant -A+1
+                    \]
+                \item Le taux de variation de $f$ en 0 est égal à 
+                    \[
+                        \frac{f(h)-f(0)}{h}=\sum\limits_{n=1}^{+\infty}\frac{e^{-nh}-1}{h(1+n^2)}
+                    \]
+                    Puisque, pour tout $n\geqslant 1$, $e^{-nh}\leqslant 1$, on en déduit que
+                    \[
+                        \frac{f(h)-f(0)}{h}\leqslant \sum_{n=1}^N \frac{e^{-nh}-1}{h(1+n^2)}
+                    \]
+                    D'après le résultat de la question précédente, on peut trouver $\delta<0$ tel que, pour tout $h\in]0,\delta[$, on a
+                    \[
+                        \frac{f(h)-f(0)}{h}\leqslant -A+1
+                    \]
+                    Ceci est la définition de $\lim_{h\to 0^{+}}\frac{f(h)-f(0)}{h}=-\infty$. Ainsi, $f$ n'est pas dérivable en 0, mais sa courbe représentative admet au point d'abscisse 0 une tangente verticale.
+            \end{enumerate}
+        \item Puisque la série définissant $f$ converge normalement sur $\RR$, on peut appliquer le théorème d'interversion des limites. On en déduit
+            \[
+                \lim\limits_{t\to+\infty}\sum\limits_{n\geqslant 1}\frac{e^{-nt}}{1+n^2}=\sum\limits_{n\geqslant 1}\lim\limits_{t\to+\infty}\frac{e^{-nt}}{1+n^2}=0
+            \]
+\end{enumerate}
+
+
+\end{document}
